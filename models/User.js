@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var users = sequelize.define("users", {
+    var user = sequelize.define("User", {
       firstname: {type:DataTypes.STRING, allowNull:false },
 
       lastname: {type:DataTypes.STRING, allowNull:false },
@@ -28,6 +28,6 @@ module.exports = function(sequelize, DataTypes) {
       // createdAt: DataTypes.TIMESTAMP,
       // updatedAt: DataTypes.TIMESTAMP
     });
-    return users;
+    return user;
   };
   

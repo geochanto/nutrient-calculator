@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 // const sequelize = require("./config/connection.js");
 const path=require("path");
 const PORT = process.env.PORT || 3800;
-const db = require("./models");
 const app = express();
 
 
@@ -39,8 +38,10 @@ app.set("view engine", "handlebars");
 // app.use(passport.initialize());
 // app.use(passport.session());
 //require("./routes/api-routes.js")(app);
+const db = require("./models");
 
-
+db.sequelize.sync({force: true}).then(function() {
   app.listen(PORT, function() {
      console.log("App now listening at localhost:" + PORT);
   });
+});
