@@ -1,7 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-    var user = sequelize.define("users", {
-      firstname: {type:Sequelize.STRING, allowNull:false },
-
+    var user = sequelize.define("User", {
+      firstname: {type:DataTypes.STRING, allowNull:false },
       lastname: {type:Sequelize.STRING, allowNull:false },
       role: {type:Sequelize.STRING, allowNull:false },
       //fb_id:DataTypes.STRING,     
