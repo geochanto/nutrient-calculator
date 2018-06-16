@@ -1,44 +1,41 @@
-var Sequelize = require("sequelize");
-var sequelize = require("../config/connection.js");
-
     var Ingredients = sequelize.define("Ingredients", {
         IngredientName: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,
             validate: {
                 len: [1,200]
             }
         },
         isGlutenFree: {
-            type: DataTypes.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             allowNull: false
         },
         isNut: {
-            type: DataTypes.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             allowNull: false
         },
         isGMO: {
-            type: DataTypes.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             allowNull: false
         },
         Calories: {
-            type: DataTypes.DECIMAL,
+            type: Sequelize.DECIMAL,
             allowNull: false
         },
         Carbs: {
-            type: DataTypes.DECIMAL,
+            type: Sequelize.DECIMAL,
             allowNull: false
         },
         Sugar: {
-            type: DataTypes.DECIMAL,
+            type: Sequelize.DECIMAL,
             allowNull: false
         },
         Fat: {
-            type: DataTypes.DECIMAL,
+            type: Sequelize.DECIMAL,
             allowNull: false
         },
         Protein: {
-            type: DataTypes.DECIMAL,
+            type: Sequelize.DECIMAL,
             allowNull: false
         },
     });

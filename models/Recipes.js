@@ -1,13 +1,10 @@
-var Sequelize = require("sequelize");
-var sequelize = require("../config/connection.js");
-
 var Recipes = sequelize.define("Recipes", {
     RecipeName: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     RecipeDescription: {
-        type: DataTypes.TEXT,
+        type: Sequelize.TEXT,
         allowNull: true
     }
 });

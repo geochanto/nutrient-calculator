@@ -3,11 +3,11 @@ var sequelize = require("../config/connection.js");
 
 var Recipe_Amounts = sequelize.define("Recipe_Amounts", {
     Amount: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false
     },
     Size: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
             len: [2, 2],
@@ -16,7 +16,7 @@ var Recipe_Amounts = sequelize.define("Recipe_Amounts", {
     },
     //Smoothie, or Acai Bowl, etc.
     Type: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
             len: [1, 50],

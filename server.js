@@ -1,9 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const sequelize = require("./config/connection.js");
+// const sequelize = require("./config/connection.js");
 const path=require("path");
 const PORT = process.env.PORT || 3800;
-const db = require("./models/Ingredients.js");
+const db = require("./models");
 const app = express();
 
 

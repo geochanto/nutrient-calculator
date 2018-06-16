@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
         } 
       },
       password: {
-        type:DataTypes.STRINGß, 
+        type:DataTypes.STRING, 
         allowNull:false 
       },
       email: {
