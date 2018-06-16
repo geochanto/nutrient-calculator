@@ -16,13 +16,15 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/geochanto/nutrient-calculator/issues"
-  },
+  },https://github.com/geochanto/nutrient-calculator/pull/36/conflict?name=package-lock.json&ancestor_oid=c79259c4b520682aef33da69b9d4c702dd25eb26&base_oid=76de45687c3e631557ba7236793e74b2536c7e10&head_oid=e28dc011cf612f3db0dc57ded03fc9fad68eddc1
   "homepage": "https://github.com/geochanto/nutrient-calculator#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
-    "mysql2": "^1.5.3",
+    "mysql": "^2.15.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "sequelize": "^4.37.10"
   }
