@@ -1,11 +1,11 @@
 module.exports = function(sequelize, DataTypes) {
     var user = sequelize.define("User", {
       firstname: {type:DataTypes.STRING, allowNull:false },
-      lastname: {type:Sequelize.STRING, allowNull:false },
-      role: {type:Sequelize.STRING, allowNull:false },
+      lastname: {type:DataTypes.STRING, allowNull:false },
+      role: {type:DataTypes.STRING, allowNull:false },
       //fb_id:DataTypes.STRING,     
       username: {
-        type:Sequelize.STRING, 
+        type:DataTypes.STRING, 
         allowNull:false
       },
       password: {
@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
         allowNull:false 
       },
       email: {
-        type:Sequelize.STRING, 
+        type:DataTypes.STRING, 
         allowNull:false ,
         validate: {
           isEmail: true
