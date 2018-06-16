@@ -2,7 +2,10 @@ module.exports = function (sequelize, DataTypes) {
     var Ingredient = sequelize.define("Ingredients", {
         IngredientName: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                len: [1,200]
+            }
         },
         isGlutenFree: {
             type: DataTypes.BOOLEAN,
@@ -37,16 +40,6 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
     });
-
-    Ingredient.associate = function (models) {
-        // We're saying that a Post should belong to an Author
-        // A Post can't be created without an Author due to the foreign key constraint
-        Ingredient.belongsTo(models.Recipe_Amounts, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
 
     return Ingredient;
 };
