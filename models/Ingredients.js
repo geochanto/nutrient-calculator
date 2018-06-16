@@ -1,5 +1,7 @@
-module.exports = function (sequelize, DataTypes) {
-    var Ingredient = sequelize.define("Ingredients", {
+var Sequelize = require("sequelize");
+var sequelize = require("../config/connection.js");
+
+    var Ingredients = sequelize.define("Ingredients", {
         IngredientName: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -41,5 +43,6 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
 
-    return Ingredient;
-};
+Ingredients.sync();
+
+module.exports = Ingredients;
