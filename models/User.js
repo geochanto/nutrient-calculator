@@ -1,23 +1,20 @@
 module.exports = function(sequelize, DataTypes) {
-    var users = sequelize.define("users", {
-      firstname: {type:DataTypes.STRING, allowNull:false },
+    var user = sequelize.define("users", {
+      firstname: {type:Sequelize.STRING, allowNull:false },
 
-      lastname: {type:DataTypes.STRING, allowNull:false },
-      role: {type:DataTypes.STRING, allowNull:false },
+      lastname: {type:Sequelize.STRING, allowNull:false },
+      role: {type:Sequelize.STRING, allowNull:false },
       //fb_id:DataTypes.STRING,     
       username: {
-        type:DataTypes.STRING, 
-        allowNull:false,
-        validate: {
-          len: [6]
-        } 
+        type:Sequelize.STRING, 
+        allowNull:false
       },
       password: {
-        type:DataTypes.STRINGß, 
+        type:Sequelize.STRING, TAMP,
         allowNull:false 
       },
       email: {
-        type:DataTypes.STRING, 
+        type:Sequelize.STRING, 
         allowNull:false ,
         validate: {
           isEmail: true
@@ -25,9 +22,9 @@ module.exports = function(sequelize, DataTypes) {
       }
      
 
-      // createdAt: DataTypes.TIMESTAMP,
+      // createdAt: DataTypes.TIMES
       // updatedAt: DataTypes.TIMESTAMP
     });
-    return users;
+    return user;
   };
   
