@@ -1,14 +1,14 @@
-module.exports = function (sequelize, DataTypes) {
-    var Recipe = sequelize.define("Recipes", {
-        RecipeName: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        RecipeDescription: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        }
-    });
+var Recipes = sequelize.define("Recipes", {
+    RecipeName: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    RecipeDescription: {
+        type: Sequelize.TEXT,
+        allowNull: true
+    }
+});
 
-    return Recipe;
-};
+Recipes.Sync();
+
+module.exports = Recipes;

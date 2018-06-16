@@ -1,9 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+// const sequelize = require("./config/connection.js");
 const path=require("path");
 const PORT = process.env.PORT || 3800;
 const db = require("./models");
 const app = express();
+
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -38,8 +40,7 @@ app.set("view engine", "handlebars");
 // app.use(passport.session());
 //require("./routes/api-routes.js")(app);
 
-db.sequelize.sync().then(function() {
+
   app.listen(PORT, function() {
      console.log("App now listening at localhost:" + PORT);
   });
-});

@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes) {
         allowNull:false
       },
       password: {
-        type:Sequelize.STRING, TAMP,
+        type:DataTypes.STRING, 
+
         allowNull:false 
       },
       email: {
