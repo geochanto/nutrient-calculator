@@ -20,7 +20,7 @@ exports.userProfileUpdate = function(req, res) {
  
         });
 };
-exports.adminMain = function (req, res) {
+exports.findUser = function (req, res) {
     var query = {};
     if (req.query.firstname) {
       query.firstname = req.query.firstname;
@@ -40,7 +40,7 @@ exports.adminMain = function (req, res) {
       where: query
     }).then(function(dbUser) {
       res.json(dbUser);
-      
+
     });
 };
 //for admin to add new user
@@ -89,6 +89,10 @@ exports.adminDeleteuser = function(req, res) {
         res.json(dbUser);
       });
 };
+
+exports.adminMain = function (req, res) {
+
+}
 
   exports.signOutUser = function(req,res) {
     req.logout();

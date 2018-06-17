@@ -1,0 +1,19 @@
+
+<h1>Logged In as {{username}}</h1>
+
+
+
+<form action="/api/users" method = "POST">
+    First Name: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{firstname}}"><br>
+    Last Name: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{lastname}}"><br>
+	Username: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{username}}"><br>
+    Email: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{email}}"><br>
+    Phone Number: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{phone}}"><br>
+    
+    <button type="submit" id="saveprofile">Save</button>
+</form>

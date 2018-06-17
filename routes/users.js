@@ -9,20 +9,25 @@ var users_controller = require('../controllers/users_controller');
 //     next();
 // }
 var isAuthenticated = require("../config/middleware/isAuthenticated");
+//below are user post-api-routes
+
+router.get("/api/users", user_controller.findUser);
+
+//router.get("/api/users/:id", );
+
+router.post("/api/users", user_controller.adminAdduser);
+
+router.delete("/api/users/:id",user_controller.adminDeleteuser);
+
+router.put("/api/users/:id",user_controller.userProfileUpdate);
+
+//below are user management html routes
 router.get('/admin', users_controller.adminMain);
-// router.get('/signup', users_controller.registrationPage);
-router.get("/api/posts", );
-
-router.get("/api/posts/:id", );
-
-router.delete("/api/posts/:id",);
-
-router.put("/api/posts");
 
 router.get('/sign-out', users_controller.signOutUser);
 
 router.post('/login', passport.authenticate("local"), users_controller.loginUser);
-
+// router.get('/signup', users_controller.registrationPage);
 //router.post('/signup', users_controller.signUpUser);
 
 module.exports = router;

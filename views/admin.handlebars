@@ -1,0 +1,28 @@
+
+
+<h1>Logged In as {{username}}</h1>
+
+
+
+<div id="userlist">
+	
+   <ul>
+     {{#each users}}
+       
+          {{> users/user-block}}
+      
+     {{/each}}
+  </ul>
+</div>
+
+<div id="adduser">
+    <form >
+  	<input type="text" name="newuser" class="newburger"><br>
+
+	<button type="submit" id="addBtn">Add User</button>
+</form>
+</div>
+
+{{!-- action="/"  or action="/api/burgers" --}}
+{{!-- <form method="POST" action="/">    --}}
+
