@@ -46,7 +46,7 @@ exports.findUser = function (req, res) {
 //for admin to add new user
 exports.adminAdduser = function(req, res) {
     db.User.findAll({
-        where: {email: req.body.email}
+        where: {username: req.body.username}
       }).then(function(users) {
         if (users.length > 0) {
           res.json({
