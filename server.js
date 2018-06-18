@@ -1,10 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 // const sequelize = require("./config/connection.js");
-const path=require("path");
+const path = require("path");
 const PORT = process.env.PORT || 3800;
 const app = express();
-
+const db = require("./models");
+// const routes = require('./routes')(app);
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -20,6 +21,11 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+const Ingredients_routes = require('./routes/Ingredients_routes');
+
+app.use(Ingredients_routes);
+
 //app.set('views', path.join(__dirname, '/../views'));    
 // Import routes and give the server access to them.
 
@@ -38,9 +44,9 @@ app.set("view engine", "handlebars");
 // app.use(passport.initialize());
 // app.use(passport.session());
 //require("./routes/api-routes.js")(app);
-const db = require("./models");
 
-db.sequelize.sync({force: true}).then(function() {
+//db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
      console.log("App now listening at localhost:" + PORT);
   });
