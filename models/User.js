@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-    var user = sequelize.define("User", {
+    var user = sequelize.define("Users", {
       firstname: {type:DataTypes.STRING, allowNull:false },
       lastname: {type:DataTypes.STRING, allowNull:false },
       role: {type:DataTypes.STRING, allowNull:false },
