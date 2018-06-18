@@ -1,0 +1,72 @@
+
+
+<h1>Logged In as {{username}}</h1>
+
+{{!-- use table layout --}}
+
+<div id="userlist">
+{{!-- 	
+   <ul>
+     {{#each users}}
+       
+          {{> users/user-block}}
+      
+     {{/each}}
+  </ul> --}}
+
+  <table>
+      <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Email</th>
+          <th></th>
+      </tr>
+         {{#each users}}
+       
+          {{> users/user-block}}
+      
+         {{/each}}
+  </ul>
+  </table>
+</div>
+
+<div id="adduser">
+    <table>
+      <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Email</th>
+          <th></th>
+      </tr>
+      <tr>
+           <td><input type="text" name="user" class="editprofile" value = "{{firstname}}"></td>
+           <td><input type="text" name="user" class="editprofile" value = "{{lastname}}"></td>
+           <td><input type="text" name="user" class="editprofile" value = "{{username}}"></td>
+           <td><input type="text" name="user" class="editprofile" value = "{{password}}"></td>
+           <td><input type="text" name="user" class="editprofile" value = "{{email}}"></td>
+           <td>
+           <button type="submit" id="saveuseredit">Save</button>
+           </td>
+     </tr>
+    {{!-- <form action="/api/users" method = "POST" id="newuser">
+    First Name: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{firstname}}"><br>
+    Last Name: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{lastname}}"><br>
+	Username: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{username}}"><br>
+    Email: <br>
+  	<input type="text" name="user" class="editprofile" value = "{{email}}"><br>
+
+    
+    <button type="submit" id="createuser">Save</button> --}}
+    {{!-- </form> --}}
+</div>
+
+{{!-- action="/"  or action="/api/burgers" --}}
+{{!-- <form method="POST" action="/">    --}}
+
