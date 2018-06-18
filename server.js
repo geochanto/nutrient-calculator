@@ -1,10 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 // const sequelize = require("./config/connection.js");
-const path=require("path");
+const path = require("path");
 const PORT = process.env.PORT || 3800;
 const app = express();
-
+const db = require("./models");
+require('./routes')(app);
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -38,7 +39,6 @@ app.set("view engine", "handlebars");
 // app.use(passport.initialize());
 // app.use(passport.session());
 //require("./routes/api-routes.js")(app);
-const db = require("./models");
 
 //db.sequelize.sync({force: true}).then(function() {
 db.sequelize.sync().then(function() {
