@@ -10,7 +10,9 @@ var users_controller = require('../controllers/users_controller');
 // }
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 //below are user post-api-routes
-
+// router.get("/", function(req, res){
+//     res.render("login-modal");
+// });
 // router.get("/api/users", user_controller.findUser);
 
 //router.get("/api/users/:id", );
