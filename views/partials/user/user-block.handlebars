@@ -14,25 +14,13 @@
 
 
 <tr>
-  {{#if read}} 
-    <td>{{firstname}}</td>
-    <td>{{lastname}}</td>
-    <td>{{username}}</td>
-    <td>{{password}}</td>
-    <td>{{email}}</td>
-    <td>
-       <button type="submit" id="edituser">Edit</button>
-       <button type="submit" id="deleteuser">Delete</button> 
+    <td class="fn"><input data-user-id="{{id}}" type="text" id="editfn1" class="editprofile" value = "{{firstname}}"></td>
+    <td class="ln"><input data-user-id="{{id}}" type="text" id="editln1" class="editprofile" value = "{{lastname}}"></td>
+    <td class="un"><input data-user-id="{{id}}" type="text" id="editun1" class="editprofile" value = "{{username}}"></td>
+    <td class="pw"><input data-user-id="{{id}}" type="text" id="editpw1" class="editprofile" value = "{{password}}"></td>
+    <td class="em"><input data-user-id="{{id}}" type="text" id="editem1" class="editprofile" value = "{{email}}"></td>
+    <td class="btn">
+       <button type="submit" data-user-id="{{id}}" id="edituser">Save</button>
+       <button type="submit" data-user-id="{{id}}" id="deleteuser">Delete</button> 
     </td>
- {{else}}
-    <td><input type="text" name="user" class="editprofile" value = "{{firstname}}"></td>
-    <td><input type="text" name="user" class="editprofile" value = "{{lastname}}"></td>
-    <td><input type="text" name="user" class="editprofile" value = "{{username}}"></td>
-    <td><input type="text" name="user" class="editprofile" value = "{{password}}"></td>
-    <td><input type="text" name="user" class="editprofile" value = "{{email}}"></td>
-    <td>
-       <button type="submit" id="saveuseredit">Save</button>
-       <button type="submit" id="deleteuser">Delete</button> 
-    </td>
- {{/if}}
 </tr>

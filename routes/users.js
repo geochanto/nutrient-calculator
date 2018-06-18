@@ -17,13 +17,13 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 router.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/logintest.html"));
 });
-//router.get("/api/users/:id", );
 
-// router.post("/api/users", user_controller.adminAdduser);
 
-// router.delete("/api/users/:id",user_controller.adminDeleteuser);
+router.post("/api/users", users_controller.adminAdduser);
 
-// router.put("/api/users/:id",user_controller.userProfileUpdate);
+router.delete("/api/users/:id",users_controller.adminDeleteuser);
+
+router.put("/api/users/:id",users_controller.userProfileUpdate);
 
 //below are user management html routes
 router.get('/admin', users_controller.adminMain);

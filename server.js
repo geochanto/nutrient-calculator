@@ -25,8 +25,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
-// app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static("public"));
+
+//app.use(express.static(path.join(__dirname, 'public')));
 //app.use(session({ secret: config.sessionKey, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
