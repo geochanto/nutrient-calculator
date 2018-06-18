@@ -1,0 +1,1 @@
+INSERT INTO Users (firstname, lastname,role,username,password,email) VALUES ("Ally","Mao","admin","allym","1234","acmlq@msn.com");
