@@ -37,10 +37,13 @@ exports.findUser = function (req, res) {
     // We set the value to an array of the models we want to include in a left outer join
     // In this case, just db.Author
     db.User.findAll({
-      where: query
+      //where: query
     }).then(function(dbUser) {
-      res.json(dbUser);
-
+      //res.json(dbUser);
+    //   res.render("admin",{
+    //       layout: 'main',
+    //       users: dbUser
+    //   });
     });
 };
 //for admin to add new user
@@ -91,7 +94,16 @@ exports.adminDeleteuser = function(req, res) {
 };
 
 exports.adminMain = function (req, res) {
-
+    db.User.findAll({
+        //where: query
+      }).then(function(dbUser) {
+        //res.json(dbUser);
+        console.log(dbUser);
+        res.render("admin",{
+            layout: 'main',
+            users: dbUser
+        });
+      });
 };
 
 exports.signOutUser = function(req,res) {
@@ -101,6 +113,7 @@ exports.signOutUser = function(req,res) {
   
   // login
 exports.loginUser = function(req, res) {
+    console.log(req);
       // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
       // So we're sending the user back the route to the members page because the redirect will happen on the front end
       // They won't get this or even be able to access this page if they aren't authed
