@@ -1,3 +1,3 @@
 INSERT INTO Ingredients (id, IngredientName, isGlutenFree, isNut, isGMO, Calories, Carbs, Sugar, Fat, Protein, createdAt, updatedAt) VALUES (1, 'banana', 1, 0, 0, 100, 10, 15, 1, 5, "1000-01-01 00:00:00", "1000-01-01 00:00:00");
 INSERT INTO Ingredients (id, IngredientName, isGlutenFree, isNut, isGMO, Calories, Carbs, Sugar, Fat, Protein, createdAt, updatedAt) VALUES (2, 'soy milk', 1, 0, 0, 200, 11, 16, 10, 6, "1000-01-01 00:00:00", "1000-01-01 00:00:00");
-INSERT INTO Users (firstname, lastname,role,username,password,email) VALUES ("Ally","Mao","admin","allym","1234","acmlq@msn.com");
+INSERT INTO Users (firstname, lastname,role,username,password,email, createdAt, updatedAt) VALUES ("Ally","Mao","admin","allym","1234","acmlq@msn.com", "1000-01-01 00:00:00", "1000-01-01 00:00:00");
