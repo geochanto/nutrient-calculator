@@ -5,7 +5,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3800;
 const app = express();
 const db = require("./models");
-require('./routes')(app);
+// const routes = require('./routes')(app);
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static("public"));
@@ -21,6 +21,11 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+const Ingredients_routes = require('./routes/Ingredients_routes');
+
+app.use(Ingredients_routes);
+
 //app.set('views', path.join(__dirname, '/../views'));    
 // Import routes and give the server access to them.
 
