@@ -1,30 +1,58 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
+
 $(document).ready(function() {
-
-    $("#submit").on("click", function(event) {
-      // Make sure to preventDefault on a submit event.
+    // Getting references to our form and inputs
+    var loginForm = $("form.login");
+    var usernameInput = $("input#username-input");
+    var passwordInput = $("input#password-input");
+  
+    // When the form is submitted, we validate there's an email and password entered
+    loginForm.on("submit", function(event) {
       event.preventDefault();
-      //console.log($(this).parents().siblings(".newburger").val().trim());
-      var login = {
-        username: "Ally",
-        password: "1234"
+      var userData = {
+        username: usernameInput.val().trim(),
+        password: passwordInput.val().trim()
       };
-       console.log(newburger);
-      // Send the POST request.
-      // $.post("/api/burgers",newburger)
-      $.ajax("/login", {
-        type: "POST",
-        data: login
-      })
-      .then(function(data) {
-          console.log("log in");  
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
 
+      console.log(userData);
+
+      // var userData = {
+      //   username: "Ally",
+      //   password: "1234"
+      // }; 
+  
+      if (!userData.username) {
+        usernameInput.css("border", "solid 1px red");
+        $("#username-feedback").text("Please enter a username");
+        return;
+      }
+  
+      if (!userData.password) {
+        passwordInput.css("border", "solid 1px red");
+        $("#password-feedback").text("Please enter a password");
+        return;
+      }
+  
+  
+      // If we have an email and password we run the loginUser function and clear the form
+      loginUser(userData.username, userData.password);
+      usernameInput.val("");
+      passwordInput.val("");
+    });
+  
+    // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
+    function loginUser(username, password) {
+      $.post("/login", {            //"/users/login"
+        username: username,
+        password: password
+      }).then(function(data) {
+        window.location.replace(data);
+        // If there's an error, log the error
+      }).catch(function(err) {
+        $("#password-feedback").text("Incorrect Username or Password");
+      });
+    }
+  
+  });
     
 
-    });
-
-  }); 
