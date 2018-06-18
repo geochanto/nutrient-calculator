@@ -1,10 +1,10 @@
 module.exports = function (sequelize, DataTypes) {
-    var Ingredient = sequelize.define("Ingredients", {
+    var Ingredient = sequelize.define("Ingredient", {
         IngredientName: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [1,200]
+                len: [1, 200]
             }
         },
         isGlutenFree: {
@@ -40,6 +40,11 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
     });
+
+    Ingredient.associate = function(models) {
+        // associations can be defined here
+        Ingredient.hasMany(models.RecipeAmount);
+    }
 
     return Ingredient;
 };
