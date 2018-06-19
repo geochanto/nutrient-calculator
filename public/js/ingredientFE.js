@@ -9,11 +9,12 @@ $(document).ready(function () {
     var $isNutInput = $("input#isNut");
     var $isGMOInput = $("input#isGMO");
 
-    $('input[type="checkbox"]').change(function(){
+    $('input[type="checkbox"]').change(function () {
         this.value ^= 1;
     });
 
-    $(document).on("click", "#submit", insertIngredient);
+    $(document).on("click", "#submitIngredient", insertIngredient);
+    $(document).on("click", ".deleteIngredient", deleteIngredient);
 
     function insertIngredient(event) {
         console.log('CLICKED!');
@@ -29,7 +30,6 @@ $(document).ready(function () {
             isNut: $isNutInput.val().trim(),
             isGMO: $isGMOInput.val().trim()
         };
-        console.log('ingredient: '+ingredient.isNut);
 
         $.post("/ingredients/new", ingredient);
 
@@ -42,6 +42,25 @@ $(document).ready(function () {
         $SugarInput.val("");
         $FatInput.val("");
         $ProteinInput.val("");
+    }
+
+
+
+    function deleteIngredient(event) {
+        event.preventDefault();
+        var id = $(this).attr('data-id');
+        var name = $(this).attr('data-name');
+        $('#ingredientNameDelete').html(name);
+
+
+        $(document).on("click", "#confirmDelete", confirmDelete);
+        function confirmDelete() {
+            $.ajax({
+                url: '/ingredients/delete/' + id,
+                type: 'DELETE'
+            });
+            $('.modal').modal('hide');
+        }
     }
 
 });

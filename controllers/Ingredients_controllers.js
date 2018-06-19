@@ -10,7 +10,6 @@ exports.viewIngredients = function(req, res) {
 };
 
 exports.addIngredient = function(req, res) {
-  console.log(req.body);
   db.Ingredient.create({
     IngredientName: req.body.ingredientName,
     Calories: req.body.Calories,
@@ -21,8 +20,18 @@ exports.addIngredient = function(req, res) {
     isGlutenFree: req.body.isGlutenFree,
     isNut: req.body.isNut,
     isGMO: req.body.isGMO
-  }).then(function(dbIngredient) {
-    console.log(dbIngredient);
+  }).then(function() {
+    console.log('THEN!');
+    res.redirect('/ingredients');
+  });
+};
+
+exports.deleteIngredient = function(req, res) {
+  db.Ingredient.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function() {
     res.redirect('/ingredients');
   });
 };

@@ -10,7 +10,7 @@ router.get('/ingredients', ingredients_controller.viewIngredients);
 
 router.post('/ingredients/new', ingredients_controller.addIngredient);
 
-// router.delete('/ingredients/delete', ingredients_controller.deleteIngredient);
+router.delete('/ingredients/delete/:id', ingredients_controller.deleteIngredient);
 
 // router.put('/ingredients/edit', ingredients_controller.editIngredient);
 
