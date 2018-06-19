@@ -20,9 +20,7 @@ exports.addIngredient = function(req, res) {
     Protein: req.body.Protein,
     isGlutenFree: req.body.isGlutenFree,
     isNut: req.body.isNut,
-    isGMO: req.body.isGMO,
-    createdAt: "1000-01-01 00:00:00",
-    updatedAt: "1000-01-01 00:00:00"
+    isGMO: req.body.isGMO
   }).then(function(dbIngredient) {
     console.log(dbIngredient);
     res.redirect('/ingredients');

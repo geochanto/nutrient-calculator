@@ -9,6 +9,10 @@ $(document).ready(function () {
     var $isNutInput = $("input#isNut");
     var $isGMOInput = $("input#isGMO");
 
+    $('input[type="checkbox"]').change(function(){
+        this.value ^= 1;
+    });
+
     $(document).on("click", "#submit", insertIngredient);
 
     function insertIngredient(event) {
