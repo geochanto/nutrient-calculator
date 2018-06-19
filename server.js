@@ -3,25 +3,38 @@ const bodyParser = require("body-parser");
 // const sequelize = require("./config/connection.js");
 const path = require("path");
 const PORT = process.env.PORT || 3800;
-const app = express();
+
 const db = require("./models");
 // const routes = require('./routes')(app);
-
+const session = require('express-session'); 
+const passport = require("./config/passport");
+const app = express();
 // Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static("public"));
+
 //app.use(favicon(__dirname + '/public/favicon.png'));
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// parse application/json
-app.use(bodyParser.json());
-
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+const isAuth 				 = require("./config/middleware/isAuthenticated");
+const authCheck 		 = require('./config/middleware/attachAuthenticationStatus');
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/json
+app.use(bodyParser.json());
+app.use(express.static("public"));
+
+//app.use(express.static(path.join(__dirname, 'public')));
+//app.use(session({ secret: config.sessionKey, resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(authCheck);
+
+
+require('./routes')(app);
 const Ingredients_routes = require('./routes/Ingredients_routes');
 
 app.use(Ingredients_routes);

@@ -1,7 +1,7 @@
 var db  = require('../models');
 
 exports.index = function(req, res) {
-  db.Recipes.findAll({
+  db.Recipe.findAll({
  
   }).then(function(data) {
     console.log(data);
@@ -14,7 +14,7 @@ exports.index = function(req, res) {
 
 exports.createRecipes = function(req, res) {
 
-  db.Recipes.create(req.body).then(function(dbRecipes) {
+  db.Recipe.create(req.body).then(function(dbRecipes) {
     res.json(dbRecipes);
   });
 };
@@ -22,7 +22,7 @@ exports.createRecipes = function(req, res) {
 
 exports.deleteRecipes = function(req, res) {
 
-  db.Recipes.destroy({
+  db.Recipe.destroy({
     where: {
       id: req.params.id
     }
@@ -34,7 +34,7 @@ exports.deleteRecipes = function(req, res) {
 
 exports.updateRecipes = function(req, res) {
 
-  db.Recipes.update(
+  db.Recipe.update(
     req.body,
     {
       where: {

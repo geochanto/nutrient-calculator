@@ -1,30 +1,32 @@
 var express = require('express');
 var router  = express.Router();
-
+const path = require("path");
 var passport = require("../config/passport");
-var users_controller = require('../controllers/users_controller');
-
+var users_controller = require('../controllers/Users_controllers');
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 // function isLogginIn() {
 //     req.loggedin = !!req.user;
 //     next();
 // }
-var isAuthenticated = require("../config/middleware/isAuthenticated");
+
 //below are user post-api-routes
 // router.get("/", function(req, res){
 //     res.render("login-modal");
 // });
-// router.get("/api/users", user_controller.findUser);
+//router.get("/api/users", user_controller.findUser);
+router.get("/", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/logintest.html"));
+});
 
-//router.get("/api/users/:id", );
 
-// router.post("/api/users", user_controller.adminAdduser);
+router.post("/api/users", users_controller.adminAdduser);
 
-// router.delete("/api/users/:id",user_controller.adminDeleteuser);
+router.delete("/api/users/:id",users_controller.adminDeleteuser);
 
-// router.put("/api/users/:id",user_controller.userProfileUpdate);
+router.put("/api/users/:id",users_controller.userProfileUpdate);
 
 //below are user management html routes
-// router.get('/admin', users_controller.adminMain);
+router.get('/admin', users_controller.adminMain);
 
 router.get('/sign-out', users_controller.signOutUser);
 
