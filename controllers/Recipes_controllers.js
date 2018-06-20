@@ -6,7 +6,7 @@ exports.index = function(req, res) {
   }).then(function(data) {
     console.log(data);
     res.render('fullmenu', {
-      Recipes: data
+      recipes: data
     });
   });
 };
@@ -15,7 +15,8 @@ exports.index = function(req, res) {
 exports.createRecipes = function(req, res) {
 
   db.Recipe.create(req.body).then(function(dbRecipes) {
-    res.json(dbRecipes);
+    console.log('THEN!');
+    res.redirect('/recipes');
   });
 };
 
@@ -27,7 +28,8 @@ exports.deleteRecipes = function(req, res) {
       id: req.params.id
     }
   }).then(function(dbRecipes) {
-    res.json(dbRecipes);
+    console.log('THEN!');
+    res.redirect('/recipes');
   });
 };
 
@@ -41,6 +43,7 @@ exports.updateRecipes = function(req, res) {
         id: req.body.id
       }
     }).then(function(dbRecipes) {
-    res.json(dbRecipes);
+      console.log('THEN!');
+      res.redirect('/recipes');
   });
 };
