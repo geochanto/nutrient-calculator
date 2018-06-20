@@ -1,21 +1,27 @@
 <h1>Ingredients</h1>
 <table>
-    {{#each ingredients}}
-    <tr>
-        <td>{{id}}</td>
-        <td>{{IngredientName}}</td>
-        <td>{{isGlutenFree}}</td>
-        <td>{{isNut}}</td>
-        <td>{{isGMO}}</td>
-        <td>{{Calories}}</td>
-        <td>{{Carbs}}</td>
-        <td>{{Sugar}}</td>
-        <td>{{Fat}}</td>
-        <td>{{Protein}}</td>
-        <td><button class="editIngredient btn btn-info" data-id="{{id}}">EDIT INGREDIENT</button></td>
-        <td><button class="deleteIngredient btn btn-danger" data-name="{{IngredientName}}" data-id="{{id}}" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">DELETE INGREDIENT</button></td>
-    </tr>
-    {{/each}}
+  {{#each ingredients}}
+  <tr>
+    <td>{{id}}</td>
+    <td>{{IngredientName}}</td>
+    <td>{{isGlutenFree}}</td>
+    <td>{{isNut}}</td>
+    <td>{{isGMO}}</td>
+    <td>{{Calories}}</td>
+    <td>{{Carbs}}</td>
+    <td>{{Sugar}}</td>
+    <td>{{Fat}}</td>
+    <td>{{Protein}}</td>
+    <td>
+      <button class="editIngredient btn btn-info" data-id="{{id}}" data-name="{{IngredientName}}" type="button" data-toggle="modal"
+        data-target="#editModal">EDIT INGREDIENT</button>
+    </td>
+    <td>
+      <button class="deleteIngredient btn btn-danger" data-name="{{IngredientName}}" data-id="{{id}}" type="button" data-toggle="modal"
+        data-target="#deleteModal">DELETE INGREDIENT</button>
+    </td>
+  </tr>
+  {{/each}}
 </table>
 
 <h2>Add Ingredient</h2>
@@ -35,7 +41,7 @@
     </div>
   </div>
 
-    <div class="form-row">
+  <div class="form-row">
     <div class="form-group col-md-4">
       <label for="Sugar">Sugar</label>
       <input type="text" class="form-control" id="Sugar" placeholder="Sugar">
@@ -50,7 +56,7 @@
     </div>
   </div>
 
-    <div class="form-row">
+  <div class="form-row">
     <div class="form-group col-md-4">
       <label for="isGlutenFree">Gluten Free?</label>
       <input type="checkbox" class="form-control" id="isGlutenFree" placeholder="Gluten Free?" value="0">
@@ -69,8 +75,8 @@
 </form>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Delete Ingredient confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -80,11 +86,88 @@
         </button>
       </div>
       <div class="modal-body">
-       <p>Are you sure you want to delete <span id="ingredientNameDelete"></span>?</p>
+        <p>Are you sure you want to delete
+          <b>
+            <span id="ingredientNameDelete"></span>
+          </b>?</p>
       </div>
       <div class="modal-footer">
-        <button id="confirmDelete" type="button" class="btn btn-secondary" data-dismiss="modal">Yes</button>
-        <button type="button" class="btn btn-primary">No</button>
+        <button id="confirmDelete" type="button" class="btn btn-danger" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Ingredient Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Ingredient</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to edit
+          <b>
+            <span id="ingredientNameEdit"></span>
+          </b>?</p>
+
+        <form id="ingredient-form">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="ingredientName-edit">Ingredient Name</label>
+              <input type="text" class="form-control" id="ingredientName-edit" placeholder="Ingredient Name">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="Calories-edit">Calories</label>
+              <input type="text" class="form-control" id="Calories-edit" placeholder="Calories">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="Carbs-edit">Carbs</label>
+              <input type="text" class="form-control" id="Carbs-edit" placeholder="Carbs">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="Sugar-edit">Sugar</label>
+              <input type="text" class="form-control" id="Sugar-edit" placeholder="Sugar">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="Fat-edit">Fat</label>
+              <input type="text" class="form-control" id="Fat-edit" placeholder="Fat">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="Protein-edit">Protein</label>
+              <input type="text" class="form-control" id="Protein-edit" placeholder="Protein">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="isGlutenFree-edit">Gluten Free?</label>
+              <input type="checkbox" class="form-control" id="isGlutenFree-edit" placeholder="Gluten Free?" value="0">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="isNut-edit">Nut?</label>
+              <input type="checkbox" class="form-control" id="isNut-edit" placeholder="Nut?" value="0">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="isGMO-edit">GMO?</label>
+              <input type="checkbox" class="form-control" id="isGMO-edit" placeholder="GMO?" value="0">
+            </div>
+          </div>
+
+          {{!-- <button id="submitIngredient" type="submit" class="btn btn-primary">Submit</button> --}}
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button id="confirmIngredientEdit" type="submit" class="btn btn-danger" data-dismiss="modal">Submit Changes</button>
+        <button id="rejectIngredientEdit" type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>

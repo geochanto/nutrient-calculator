@@ -12,6 +12,6 @@ router.post('/ingredients/new', ingredients_controller.addIngredient);
 
 router.delete('/ingredients/delete/:id', ingredients_controller.deleteIngredient);
 
-// router.put('/ingredients/edit', ingredients_controller.editIngredient);
+router.put('/ingredients/edit/:id', ingredients_controller.editIngredient);
 
 module.exports = router;
