@@ -68,7 +68,11 @@ $(document).ready(function () {
             $.ajax({
                 url: '/ingredients/delete/' + id,
                 type: 'DELETE'
-            });
+            }).then(
+                function() {
+                  location.reload();
+                }
+              );
         }
     }
 
@@ -103,7 +107,11 @@ $(document).ready(function () {
                 url: '/ingredients/edit/' + id,
                 type: 'PUT',
                 data: ingredient
-            });
+            }).then(
+                function() {
+                  location.reload();
+                }
+              );
         }
     }
 
