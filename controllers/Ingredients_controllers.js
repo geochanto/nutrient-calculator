@@ -10,17 +10,7 @@ exports.viewIngredients = function(req, res) {
 };
 
 exports.addIngredient = function(req, res) {
-  db.Ingredient.create({
-    IngredientName: req.body.ingredientName,
-    Calories: req.body.Calories,
-    Carbs: req.body.Carbs,
-    Sugar: req.body.Sugar,
-    Fat: req.body.Fat, 
-    Protein: req.body.Protein,
-    isGlutenFree: req.body.isGlutenFree,
-    isNut: req.body.isNut,
-    isGMO: req.body.isGMO
-  }).then(function() {
+  db.Ingredient.create(req.body).then(function() {
     console.log('THEN!');
     res.redirect('/ingredients');
   });
@@ -38,17 +28,7 @@ exports.deleteIngredient = function(req, res) {
 
 exports.editIngredient = function(req, res) {
   console.log('req body: ' + req.body.ingredientName);
-  db.Ingredient.update({
-    IngredientName: req.body.ingredientName,
-    Calories: req.body.Calories,
-    Carbs: req.body.Carbs,
-    Sugar: req.body.Sugar,
-    Fat: req.body.Fat, 
-    Protein: req.body.Protein,
-    isGlutenFree: req.body.isGlutenFree,
-    isNut: req.body.isNut,
-    isGMO: req.body.isGMO
-    }, {
+  db.Ingredient.update(req.body, {
     where: {
       id: req.params.id
     }

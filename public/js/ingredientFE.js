@@ -30,7 +30,7 @@ $(document).ready(function () {
     function insertIngredient(event) {
         event.preventDefault();
         var ingredient = {
-            ingredientName: $ingredientNameInput.val().trim(),
+            IngredientName: $ingredientNameInput.val().trim(),
             Calories: $CaloriesInput.val().trim(),
             Carbs: $CarbsInput.val().trim(),
             Sugar: $SugarInput.val().trim(),
@@ -41,7 +41,17 @@ $(document).ready(function () {
             isGMO: $isGMOInput.val().trim()
         };
 
-        $.post("/ingredients/new", ingredient);
+        // $.post("/ingredients/new", ingredient).then(function() {
+        //     location.reload();
+        // });
+        $.ajax({
+            url: '/ingredients/new',
+            type: 'POST',
+            data: ingredient
+        }).then(function() {
+            console.log('edited!');
+            location.reload();
+        });
 
         $ingredientNameInput.val("");
         $isGlutenFreeInput.val("");
@@ -76,10 +86,7 @@ $(document).ready(function () {
         event.preventDefault();
         var id = $(this).attr('data-id');
         var name = $(this).attr('data-name');
-
-
-        
-        
+            
         $('#ingredientNameEdit').html(name);
 
         $(document).on("click", "#confirmIngredientEdit", confirmEdit);
@@ -87,7 +94,7 @@ $(document).ready(function () {
         function confirmEdit() {
             console.log('ingredient edit submitted...');
             var ingredient = {
-                ingredientName: $ingredientNameInputEdit.val().trim(),
+                IngredientName: $ingredientNameInputEdit.val().trim(),
                 Calories: $CaloriesInputEdit.val().trim(),
                 Carbs: $CarbsInputEdit.val().trim(),
                 Sugar: $SugarInputEdit.val().trim(),
@@ -103,6 +110,9 @@ $(document).ready(function () {
                 url: '/ingredients/edit/' + id,
                 type: 'PUT',
                 data: ingredient
+            }).then(function() {
+                console.log('edited!');
+                location.reload();
             });
         }
     }
