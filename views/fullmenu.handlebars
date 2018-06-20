@@ -3,24 +3,24 @@
 
 <ul>
   {{#each recipes}}
-    {{!-- {{#if anthenicated}}
-      {{> recipes/recipes-block}}
-    {{/if}} --}}
+  <li>{{id}}</li>
+    <li>{{RecipeName}}</li>
   {{/each}}
 </ul>
 </div>
 
 
-<div id='add'>
+<div>
 <h2>ADD RECIPES</h2>
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">RECIPE NAME</label>
-    <input type="text" id="ca" name="name">
+    <label for="recipeName">RECIPE NAME</label>
+    <input type="text" class="form-control" id="recipeName" placeholder="Recipe Name">
   </div>
 
-
-  <button type="submit">ADD RECIPE</button>
+  <button id="submitRecipe" type="submit" class="btn btn-primary">ADD RECIPE</button>
 </form>
 </div>
+
+
