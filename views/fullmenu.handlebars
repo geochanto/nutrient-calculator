@@ -1,8 +1,13 @@
 <div id='rawlist'>
 <h2>Recipes List</h2>
 
+
+
+<div>
+
 <ul>
   {{#each recipes}}
+<<<<<<< HEAD
     {{!-- {{#if anthenicated}}
       {{> recipes/recipes-block}}
     {{/if}} --}}
@@ -11,21 +16,29 @@
     <li>{{RecipeName}}</li>
     <li>{{RecipeDescription}}</li>
     </ul>
+=======
+  <li>
+     {{RecipeName}}
+      {{RecipeDescription}}
+  	</li>
+>>>>>>> cbb266c5c8c006419e4d9bb8bbeef1f7eecf6d25
   {{/each}}
 </ul>
 </div>
 
 
-<div id='add'>
-<h2>ADD RECIPES</h2>
+
+<div>
+<h2>ADD RECIPE</h2>
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">RECIPE NAME</label>
-    <input type="text" id="ca" name="name">
+    <label for="rpName">Recipe Name</label>
+    <input type="text" id="rpName" name="name">
   </div>
 
 
   <button type="submit">ADD RECIPE</button>
 </form>
 </div>
+

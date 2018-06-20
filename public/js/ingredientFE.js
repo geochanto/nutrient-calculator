@@ -78,7 +78,11 @@ $(document).ready(function () {
             $.ajax({
                 url: '/ingredients/delete/' + id,
                 type: 'DELETE'
-            });
+            }).then(
+                function() {
+                  location.reload();
+                }
+              );
         }
     }
 
@@ -110,10 +114,18 @@ $(document).ready(function () {
                 url: '/ingredients/edit/' + id,
                 type: 'PUT',
                 data: ingredient
+<<<<<<< HEAD
             }).then(function() {
                 console.log('edited!');
                 location.reload();
             });
+=======
+            }).then(
+                function() {
+                  location.reload();
+                }
+              );
+>>>>>>> cbb266c5c8c006419e4d9bb8bbeef1f7eecf6d25
         }
     }
 
