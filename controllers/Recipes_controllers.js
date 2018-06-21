@@ -1,4 +1,6 @@
 var db = require('../models');
+var sequelize = require('sequelize');
+var Promise = require("bluebird");
 
 exports.index = function (req, res) {
   db.RecipeAmount.findAll({
@@ -20,19 +22,31 @@ exports.createRecipes = function (req, res) {
 
 
 exports.deleteRecipes = function (req, res) {
+  console.log('deleteRecipes started...');
+  var promises = {
+    recipeAmountDestroy: db.RecipeAmount.destroy({
+      where: {
+        RecipeId: req.params.id
+      }
+    }),
+    recipeDestroy: db.Recipe.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
 
-  db.Recipe.destroy({
-    where: {
-      id: req.params.id
-    }
-  });
-  
-  db.RecipeAmount.destroy({
-    where: {
-      RecipeId: req.params.id
-    }
-  }).then(function (dbRecipes) {
-    res.redirect('/recipes');
+  };
+
+  sequelize.Promise.props(promises).then(function (results) {
+    console.log('anybody home?');
+    console.log(promises);
+    console.log('=======');
+    console.log(results);
+    console.log('=======');
+    /// each promise is resolved here, results:
+    results.recipeAmountDestroy;
+    results.recipeDestroy;
+    
   });
 };
 

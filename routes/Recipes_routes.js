@@ -14,6 +14,6 @@ router.post('/recipes/new', Recipes_controllers.createRecipes);
 router.put('/recipes/update/:id', Recipes_controllers.updateRecipes);
 
 // router.delete('/recipes/delete/:id', isAuthenticated, Recipes_controllers.updateRecipes);
-router.delete('/recipes/delete/:id',Recipes_controllers.updateRecipes);
+router.delete('/recipes/delete/:id',Recipes_controllers.deleteRecipes);
 
 module.exports = router;

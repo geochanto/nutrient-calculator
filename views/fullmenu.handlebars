@@ -5,16 +5,26 @@
 
     <b>Recipe Names & Desc</b>
     <table border="1" cellpadding="5">
+        <tr>
+        <th>ID</th>
+        <th>Amount</th>
+        <th>Size</th>
+        <th>Type</th>
+        <th>IngredientId</th>
+        <th>IngredientName</th>
+        <th>RecipeId</th>
+        <th>RecipeName</th>
+      </tr>
       {{#each recipes}}
       <tr>
-        <td> ID: {{id}} </td>
-        <td> Amount: {{Amount}} </td>
-        <td> Size: {{Size}} </td>
-        <td> Type: {{Type}} </td>
-        <td> IngredientId: {{IngredientId}} </td>
-        <td> IngredientName: {{Ingredient.dataValues.IngredientName}} </td>
-        <td> RecipeId: {{RecipeId}} </td>
-        <td> RecipeName: {{Recipe.dataValues.RecipeName}} </td>
+        <td>{{id}} </td>
+        <td>{{Amount}} </td>
+        <td>{{Size}} </td>
+        <td>{{Type}} </td>
+        <td>{{IngredientId}} </td>
+        <td>{{Ingredient.dataValues.IngredientName}} </td>
+        <td>{{RecipeId}} </td>
+        <td>{{Recipe.dataValues.RecipeName}} </td>
         {{!-- <td>
           <button class="editRecipe btn btn-info" data-id="{{RecipeId}}" data-name="{{Recipe.dataValues.RecipeName}}" type="button" data-toggle="modal"
             data-target="#editRecipeModal">EDIT RECIPE</button>

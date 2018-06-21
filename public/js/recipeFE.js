@@ -21,13 +21,7 @@ $(function() {
       $.ajax("/recipes/new", {
         type: "POST",
         data: newRecipe
-      }).then(
-        function() {
-          console.log("created new recipe");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
+      }).then(location.reload());
     });
   
   });
@@ -38,6 +32,7 @@ $(function() {
     var id = $(this).attr('data-id');
     var name = $(this).attr('data-name');
     console.log(name);
+    console.log(id);
 
     $('#RecipeNameDelete').html(name);
 
@@ -47,11 +42,7 @@ $(function() {
         $.ajax({
             url: '/recipes/delete/' + id,
             type: 'DELETE'
-        }).then(
-            function() {
-              location.reload();
-            }
-          );
+          }).then(location.reload());
     }
 }
 
