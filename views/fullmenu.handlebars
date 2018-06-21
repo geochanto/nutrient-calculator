@@ -1,12 +1,29 @@
-<h1>Welcome to Renovo</h1>
+<div id='rawlist'>
+<h2>Recipes List</h2>
 
-<h2>Full Menu</h2>
+<div>
 
 <ul>
-  {{#each Recipes}}
-  
+  {{#each recipes}}
+  <li>
+     {{RecipeName}}
+      {{RecipeDescription}}
+  	</li>
   {{/each}}
 </ul>
+</div>
+
+<div>
+<h2>ADD RECIPE</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="rpName">Recipe Name</label>
+    <input type="text" id="rpName" name="name">
+  </div>
 
 
+  <button type="submit">ADD RECIPE</button>
+</form>
+</div>
 
