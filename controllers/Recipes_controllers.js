@@ -13,7 +13,6 @@ exports.index = function (req, res) {
 };
 
 exports.createRecipes = function (req, res) {
-
   db.Recipe.create(req.body).then(function (dbRecipes) {
     console.log('THEN!');
     res.redirect('/recipes');
@@ -22,7 +21,6 @@ exports.createRecipes = function (req, res) {
 
 
 exports.deleteRecipes = function (req, res) {
-  console.log('deleteRecipes started...');
   var promises = {
     recipeAmountDestroy: db.RecipeAmount.destroy({
       where: {
@@ -38,11 +36,6 @@ exports.deleteRecipes = function (req, res) {
   };
 
   sequelize.Promise.props(promises).then(function (results) {
-    console.log('anybody home?');
-    console.log(promises);
-    console.log('=======');
-    console.log(results);
-    console.log('=======');
     /// each promise is resolved here, results:
     results.recipeAmountDestroy;
     results.recipeDestroy;
