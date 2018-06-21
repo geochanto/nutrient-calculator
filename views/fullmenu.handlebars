@@ -41,16 +41,55 @@
 
   <div>
     <h2>ADD RECIPE</h2>
-    <form class="create-form">
+<form id="recipe-form">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="RecipeName">Recipe Name</label>
+      <input type="text" class="form-control" id="RecipeName" placeholder="Recipe  Name">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="RecipeDescription">Recipe Description</label>
+      <input type="text" class="form-control" id="RecipeDescription" placeholder="Recipe Description">
+    </div>
+    {{!-- <div class="form-group col-md-4">
+      <label for="Carbs">Carbs</label>
+      <input type="text" class="form-control" id="Carbs" placeholder="Carbs">
+    </div> --}}
+  </div>
 
-      <div class="form-group">
-        <label for="rpName">Recipe Name</label>
-        <input type="text" id="rpName" name="name">
-      </div>
+  {{!-- <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="Sugar">Sugar</label>
+      <input type="text" class="form-control" id="Sugar" placeholder="Sugar">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="Fat">Fat</label>
+      <input type="text" class="form-control" id="Fat" placeholder="Fat">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="Protein">Protein</label>
+      <input type="text" class="form-control" id="Protein" placeholder="Protein">
+    </div>
+  </div>
 
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="isGlutenFree">Gluten Free?</label>
+      <input type="checkbox" class="form-control" id="isGlutenFree" placeholder="Gluten Free?" value="0">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="isNut">Nut?</label>
+      <input type="checkbox" class="form-control" id="isNut" placeholder="Nut?" value="0">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="isGMO">GMO?</label>
+      <input type="checkbox" class="form-control" id="isGMO" placeholder="GMO?" value="0">
+    </div>
+  </div> --}}
 
-      <button type="submit">ADD RECIPE</button>
-    </form>
+  <button id="submitRecipe" type="submit" class="btn btn-primary">Submit</button>
+</form>
+
   </div>
 
 

@@ -2,7 +2,7 @@ var db = require('../models');
 var sequelize = require('sequelize');
 var Promise = require("bluebird");
 
-exports.index = function (req, res) {
+exports.viewRecipes = function (req, res) {
   db.RecipeAmount.findAll({
     include: [db.Recipe, db.Ingredient]
   }).then(function (data) {
@@ -12,15 +12,17 @@ exports.index = function (req, res) {
   });
 };
 
-exports.createRecipes = function (req, res) {
-  db.Recipe.create(req.body).then(function (dbRecipes) {
-    console.log('THEN!');
+exports.addRecipe = function (req, res) {
+  db.Recipe.create({
+    RecipeName: req.body.RecipeName,
+    RecipeDescription: req.body.RecipeDescription
+  }).then(function () {
     res.redirect('/recipes');
   });
 };
 
 
-exports.deleteRecipes = function (req, res) {
+exports.deleteRecipe = function (req, res) {
   var promises = {
     recipeAmountDestroy: db.RecipeAmount.destroy({
       where: {
@@ -44,8 +46,7 @@ exports.deleteRecipes = function (req, res) {
 };
 
 
-exports.updateRecipes = function (req, res) {
-
+exports.editRecipe = function (req, res) {
   db.Recipe.update(
     req.body,
     {
