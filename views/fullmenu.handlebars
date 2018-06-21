@@ -59,9 +59,18 @@
       </div>
       <div id="RecipeIngredientGroup">
         <div class="form-row">
-          <div class="form-group col-md-3 ingredientCol">
+          {{!-- <div class="form-group col-md-3 ingredientCol">
             <label for="RecipeIngredient-1">Ingredient 1</label>
             <input type="text" class="form-control" id="RecipeIngredient-1" placeholder="">
+          </div> --}}
+
+          <div class="form-group col-md-3 ingredintCol">
+            <label for="RecipeIngredient-1">Select ingredient</label>
+            <select class="form-control" id="RecipeIngredient-1">
+              {{#each ingredients}}
+              <option data-id="{{id}}" data-name="{{IngredientName}}">{{IngredientName}}</option>
+              {{/each}}
+            </select>
           </div>
 
           <div class="form-group col-md-3 AmountForSmallCol">

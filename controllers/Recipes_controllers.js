@@ -3,13 +3,25 @@ var sequelize = require('sequelize');
 var Promise = require("bluebird");
 
 exports.viewRecipes = function (req, res) {
-  db.RecipeAmount.findAll({
-    include: [db.Recipe, db.Ingredient]
-  }).then(function (data) {
-    res.render('fullmenu', {
-      recipes: data
-    });
-  });
+
+    var arr = [];
+    db.Ingredient.findAll({}).then(    
+      function(data) {
+        arr.push(data);
+      },
+      db.RecipeAmount.findAll({
+        include: [db.Recipe, db.Ingredient]
+      }).then(function (data2) {
+        arr.push(data2);
+        console.log('============');
+        console.log(arr);
+        console.log('============');
+        res.render('fullmenu', {
+          recipes: arr[1],
+          ingredients: arr[0]
+        });
+      })
+    );
 };
 
 exports.addRecipe = function (req, res) {
@@ -81,7 +93,6 @@ exports.deleteRecipe = function (req, res) {
     /// each promise is resolved here, results:
     results.recipeAmountDestroy;
     results.recipeDestroy;
-
   });
 };
 
