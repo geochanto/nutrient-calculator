@@ -24,6 +24,7 @@ module.exports = function (sequelize, DataTypes) {
     });
     RecipeAmount.associate = function (models) {
         RecipeAmount.belongsTo(models.Ingredient);
+        RecipeAmount.belongsTo(models.Recipe);
     };
 
     return RecipeAmount;

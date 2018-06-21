@@ -1,29 +1,69 @@
 <div id='rawlist'>
-<h2>Recipes List</h2>
+  <h2>Recipes List</h2>
 
-<div>
+  <div>
 
-<ul>
-  {{#each recipes}}
-  <li>
-     {{RecipeName}}
-      {{RecipeDescription}}
-  	</li>
-  {{/each}}
-</ul>
-</div>
+    <b>Recipe Names & Desc</b>
+    <table border="1" cellpadding="5">
+      {{#each recipes}}
+      <tr>
+        <td> ID: {{id}} </td>
+        <td> Amount: {{Amount}} </td>
+        <td> Size: {{Size}} </td>
+        <td> Type: {{Type}} </td>
+        <td> IngredientId: {{IngredientId}} </td>
+        <td> IngredientName: {{Ingredient.dataValues.IngredientName}} </td>
+        <td> RecipeId: {{RecipeId}} </td>
+        <td> RecipeName: {{Recipe.dataValues.RecipeName}} </td>
+        {{!-- <td>
+          <button class="editRecipe btn btn-info" data-id="{{RecipeId}}" data-name="{{Recipe.dataValues.RecipeName}}" type="button" data-toggle="modal"
+            data-target="#editRecipeModal">EDIT RECIPE</button>
+        </td> --}}
+        <td>
+          <button class="deleteRecipe btn btn-danger" data-name="{{Recipe.dataValues.RecipeName}}" data-id="{{RecipeId}}" type="button" data-toggle="modal"
+            data-target="#deleteRecipeModal">DELETE RECIPE</button>
+        </td>
+      </tr>
+      {{/each}}
+    </table>
 
-<div>
-<h2>ADD RECIPE</h2>
-<form class="create-form">
+  </div>
 
-  <div class="form-group">
-    <label for="rpName">Recipe Name</label>
-    <input type="text" id="rpName" name="name">
+  <div>
+    <h2>ADD RECIPE</h2>
+    <form class="create-form">
+
+      <div class="form-group">
+        <label for="rpName">Recipe Name</label>
+        <input type="text" id="rpName" name="name">
+      </div>
+
+
+      <button type="submit">ADD RECIPE</button>
+    </form>
   </div>
 
 
-  <button type="submit">ADD RECIPE</button>
-</form>
+<!-- Delete Recipe confirmation Modal -->
+<div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Recipe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete
+          <b>
+            <span id="RecipeNameDelete"></span>
+          </b>?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="confirmRecipeDelete" type="button" class="btn btn-danger" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
 </div>
-

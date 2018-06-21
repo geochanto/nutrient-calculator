@@ -1,3 +1,10 @@
+$(document).ready(function () {
+
+  $(document).on("click", ".deleteRecipe", deleteRecipe);
+  // $(document).on("click", "#submitIngredient", insertIngredient);
+  // $(document).on("click", ".editIngredient", editIngredient);
+
+
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
 
@@ -25,3 +32,27 @@ $(function() {
   
   });
   
+
+  function deleteRecipe(event) {
+    event.preventDefault();
+    var id = $(this).attr('data-id');
+    var name = $(this).attr('data-name');
+    console.log(name);
+
+    $('#RecipeNameDelete').html(name);
+
+    $(document).on("click", "#confirmRecipeDelete", confirmRecipeDelete);
+
+    function confirmRecipeDelete() {
+        $.ajax({
+            url: '/recipes/delete/' + id,
+            type: 'DELETE'
+        }).then(
+            function() {
+              location.reload();
+            }
+          );
+    }
+}
+
+});
