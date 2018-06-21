@@ -5,7 +5,7 @@
 
     <b>Recipe Names & Desc</b>
     <table border="1" cellpadding="5">
-        <tr>
+      <tr>
         <th>ID</th>
         <th>Amount</th>
         <th>Size</th>
@@ -25,13 +25,14 @@
         <td>{{Ingredient.dataValues.IngredientName}} </td>
         <td>{{RecipeId}} </td>
         <td>{{Recipe.dataValues.RecipeName}} </td>
-        {{!-- <td>
-          <button class="editRecipe btn btn-info" data-id="{{RecipeId}}" data-name="{{Recipe.dataValues.RecipeName}}" type="button" data-toggle="modal"
-            data-target="#editRecipeModal">EDIT RECIPE</button>
+        {{!--
+        <td>
+          <button class="editRecipe btn btn-info" data-id="{{RecipeId}}" data-name="{{Recipe.dataValues.RecipeName}}" type="button"
+            data-toggle="modal" data-target="#editRecipeModal">EDIT RECIPE</button>
         </td> --}}
         <td>
-          <button class="deleteRecipe btn btn-danger" data-name="{{Recipe.dataValues.RecipeName}}" data-id="{{RecipeId}}" type="button" data-toggle="modal"
-            data-target="#deleteRecipeModal">DELETE RECIPE</button>
+          <button class="deleteRecipe btn btn-danger" data-name="{{Recipe.dataValues.RecipeName}}" data-id="{{RecipeId}}" type="button"
+            data-toggle="modal" data-target="#deleteRecipeModal">DELETE RECIPE</button>
         </td>
       </tr>
       {{/each}}
@@ -41,78 +42,75 @@
 
   <div>
     <h2>ADD RECIPE</h2>
-<form id="recipe-form">
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="RecipeName">Recipe Name</label>
-      <input type="text" class="form-control" id="RecipeName" placeholder="Recipe  Name">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="RecipeDescription">Recipe Description</label>
-      <input type="text" class="form-control" id="RecipeDescription" placeholder="Recipe Description">
-    </div>
-    {{!-- <div class="form-group col-md-4">
-      <label for="Carbs">Carbs</label>
-      <input type="text" class="form-control" id="Carbs" placeholder="Carbs">
-    </div> --}}
-  </div>
-
-  {{!-- <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="Sugar">Sugar</label>
-      <input type="text" class="form-control" id="Sugar" placeholder="Sugar">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="Fat">Fat</label>
-      <input type="text" class="form-control" id="Fat" placeholder="Fat">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="Protein">Protein</label>
-      <input type="text" class="form-control" id="Protein" placeholder="Protein">
-    </div>
-  </div>
-
-  <div class="form-row">
-    <div class="form-group col-md-4">
-      <label for="isGlutenFree">Gluten Free?</label>
-      <input type="checkbox" class="form-control" id="isGlutenFree" placeholder="Gluten Free?" value="0">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="isNut">Nut?</label>
-      <input type="checkbox" class="form-control" id="isNut" placeholder="Nut?" value="0">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="isGMO">GMO?</label>
-      <input type="checkbox" class="form-control" id="isGMO" placeholder="GMO?" value="0">
-    </div>
-  </div> --}}
-
-  <button id="submitRecipe" type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-  </div>
-
-
-<!-- Delete Recipe confirmation Modal -->
-<div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Recipe</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <form id="recipe-form">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="RecipeName">Recipe Name</label>
+          <input type="text" class="form-control" id="RecipeName" placeholder="Recipe  Name">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="RecipeDescription">Recipe Description</label>
+          <input type="text" class="form-control" id="RecipeDescription" placeholder="Recipe Description">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="RecipeType">Recipe Type</label>
+          <input type="text" class="form-control" id="RecipeType" placeholder="Recipe Type">
+        </div>
       </div>
-      <div class="modal-body">
-        <p>Are you sure you want to delete
-          <b>
-            <span id="RecipeNameDelete"></span>
-          </b>?</p>
+      <div id="RecipeIngredientGroup">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="RecipeIngredient-1">Ingredient 1</label>
+            <input type="text" class="form-control" id="RecipeIngredient-1" placeholder="Ingredient 1">
+          </div>
+
+          <div class="form-group col-md-3">
+            <label for="AmountForSmall-1">Amount for Small </label>
+            <input type="text" class="form-control" id="AmountForSmall-1" placeholder="Amount for Small">
+          </div>
+
+          <div class="form-group col-md-3">
+            <label for="AmountForMedium-1">Amount for Medium </label>
+            <input type="text" class="form-control" id="AmountForMedium-1" placeholder="Amount for Medium">
+          </div>
+
+          <div class="form-group col-md-3">
+            <label for="AmountForLarge-1">Amount for Large </label>
+            <input type="text" class="form-control" id="AmountForLarge-1" placeholder="Amount for Large">
+          </div>
+
+        </div>
       </div>
-      <div class="modal-footer">
-        <button id="confirmRecipeDelete" type="button" class="btn btn-danger" data-dismiss="modal">Yes</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+      <span id="addRecipeIngredient" class="btn btn-success">Add ingredient</span>
+      <br>
+      <br>
+
+      <button id="submitRecipe" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+
+
+  <!-- Delete Recipe confirmation Modal -->
+  <div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Recipe</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete
+            <b>
+              <span id="RecipeNameDelete"></span>
+            </b>?</p>
+        </div>
+        <div class="modal-footer">
+          <button id="confirmRecipeDelete" type="button" class="btn btn-danger" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
