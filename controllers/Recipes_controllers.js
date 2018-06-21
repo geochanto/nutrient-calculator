@@ -13,12 +13,27 @@ exports.viewRecipes = function (req, res) {
 };
 
 exports.addRecipe = function (req, res) {
-  db.Recipe.create({
-    RecipeName: req.body.RecipeName,
-    RecipeDescription: req.body.RecipeDescription
-  }).then(function () {
-    res.redirect('/recipes');
+
+  var promises = {
+    recipeAdd: db.Recipe.create({
+      RecipeName: req.body.RecipeName,
+      RecipeDescription: req.body.RecipeDescription
+    }),
+    recipeAmountAdd: db.RecipeAmount.create({
+      Amount: 110,
+      Size: 'sm',
+      Type: 'smoothie',
+      // IngredientId: 10,
+      // RecipeId: 1
+    })
+}
+  sequelize.Promise.props(promises).then(function (results) {
+    /// each promise is resolved here, results:
+    results.recipeAdd;
+    results.recipeAmountAdd;
+    
   });
+
 };
 
 
@@ -34,7 +49,6 @@ exports.deleteRecipe = function (req, res) {
         id: req.params.id
       }
     })
-
   };
 
   sequelize.Promise.props(promises).then(function (results) {

@@ -8,32 +8,30 @@ $(document).ready(function () {
 
   $(document).on("click", "#addRecipeIngredient", addRecipeIngredient);
 
-  i = 1;
+  var i = 1;
 
   function addRecipeIngredient () {
-    console.log('clicked');
     i++;
-    console.log(i);
     $("#RecipeIngredientGroup").append( `
     <div class="form-row">
-    <div class="form-group col-md-3" >
+    <div class="form-group col-md-3 ingredientCol" >
     <label for="RecipeIngredient-${i}">Ingredient ${i}</label>
-    <input type="text" class="form-control" id="RecipeIngredient-${i}" placeholder="Ingredient ${i}">
+    <input type="text" class="form-control" id="RecipeIngredient-${i}" placeholder="">
     </div>
 
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-3 AmountForSmallCol">
     <label for="AmountForSmall-${i}">Amount for Small </label>
-    <input type="text" class="form-control" id="AmountForSmall-${i}" placeholder="Amount for Small">
+    <input type="text" class="form-control" id="AmountForSmall-${i}" placeholder="">
   </div>
 
-  <div class="form-group col-md-3">
+  <div class="form-group col-md-3 AmountForMediumCol">
     <label for="AmountForMedium-${i}">Amount for Medium </label>
-    <input type="text" class="form-control" id="AmountForMedium-${i}" placeholder="Amount for Medium">
+    <input type="text" class="form-control" id="AmountForMedium-${i}" placeholder="">
   </div>
 
-  <div class="form-group col-md-3">
+  <div class="form-group col-md-3 AmountForLargeCol">
     <label for="AmountForLarge-${i}">Amount for Large </label>
-    <input type="text" class="form-control" id="AmountForLarge-${i}" placeholder="Amount for Large">
+    <input type="text" class="form-control" id="AmountForLarge-${i}" placeholder="">
   </div>
   </div>` );
   }
@@ -42,17 +40,29 @@ $(document).ready(function () {
 function insertRecipe(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
-    
+      RecipeIngredientsInputs = [];
+      $('#RecipeIngredientGroup .form-row').each(function() {
+        var inputs = {
+          Ingredient: $(this).find('.ingredientCol input').val().trim(),
+          AmountForSmall: $(this).find('.AmountForSmallCol input').val().trim(),
+          AmountForMedium: $(this).find('.AmountForMediumCol input').val().trim(),
+          AmountForLarge: $(this).find('.AmountForLargeCol input').val().trim()
+        }
+        RecipeIngredientsInputs.push(inputs);
+      });
       var recipe = {
         RecipeName: $RecipeNameInput.val().trim(),
-        RecipeDescription: $RecipeDescriptionInput.val().trim()
+        RecipeDescription: $RecipeDescriptionInput.val().trim(),
+        RecipeIngredients: RecipeIngredientsInputs
       };
+
+      console.log(recipe);
    
       // Send the POST request.
       $.ajax("/recipes/new", {
         type: "POST",
         data: recipe
-      }).then(location.reload());
+      });
   
   }
   
