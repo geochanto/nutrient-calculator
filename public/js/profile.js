@@ -4,6 +4,7 @@ $(document).ready(function() {
      event.preventDefault();
      var id = $(this).data("userId"); 
      console.log(id);
+     
      //get data
 
      
@@ -13,6 +14,9 @@ $(document).ready(function() {
          password: $(this).siblings("input#pw1").val().trim(),
          email: $(this).siblings("input#em1").val().trim()       
        };
+     console.log(userdata.username);
+     console.log(userdata.password);
+     console.log(userdata.email);
      $.ajax("/users/api/users/" + id, {
          type: "PUT",
          data: userdata

@@ -26,8 +26,12 @@ exports.userProfileUpdate = function(req, res) {
         });
 };
 exports.findUser = function (req, res) {
-    console.log(req.user.username);
-    var userId=req.user.id;
+    //console.log(req.user.username);
+    if (req.user) {
+      var userId=req.user.id;
+    } else {
+      var userId = 6;
+    }
     db.User.findAll(
         {
           where: {
@@ -37,12 +41,12 @@ exports.findUser = function (req, res) {
           console.log(dbUser);
           res.render("editprofile",{
             layout: 'main',
-            //  firstname: "test",
-            //  lastname: dbUser.lastname,
-            //  username: dbUser[0].username,
-            //  password: dbUser.password,
-            //  email: dbUser.email,
-            //  id: dbUser.id
+             firstname: dbUser[0].firstname,
+             lastname: dbUser[0].lastname,
+             username: dbUser[0].username,
+             password: dbUser[0].password,
+             email: dbUser[0].email,
+             id: dbUser[0].id
            });
         });
 };
@@ -102,17 +106,22 @@ exports.adminDeleteuser = function(req, res) {
 exports.adminMain = function (req, res) {
   //console.log(req.user.username);
   //console.log(req.user.id);
- // var loginUser=req.user.username;
+    if (req.user) {
+    var loginUser=req.user.username;
+    } else {
+    var loginUser ="";
+    };
+
     db.User.findAll({
         //where: query
       }).then(function(dbUser) {
         //res.json(dbUser);
-        console.log(dbUser);
+        console.log(dbUser[0].firstname);
         res.render("admin",{
             layout: 'main',
             //username: req.user.username,
             users: dbUser,
-            //username: loginUser
+            username: loginUser
         });
       });
 };
