@@ -17,38 +17,38 @@ exports.userProfileUpdate = function(req, res) {
             id: req.params.id
           }
         }).then(function(dbUser){
-          res.json(dbUser);
-          
+          console.log(dbUser);
+        //   res.render("editprofile",{
+        //     layout: 'main',
+        //     users: dbUser
+        // });
  
         });
 };
-// exports.findUser = function (req, res) {
-//     var query = {};
-//     if (req.query.firstname) {
-//       query.firstname = req.query.firstname;
-//     };
-//     if (req.query.lastname) {
-//         query.lastname = req.query.lastname;
-//     };
-
-//     if (req.query.id) {
-//         query.id = req.query.id;
-//     };
-    
-    
-//     db.User.findAll({
-//       //where: query
-//     }).then(function(dbUser) {
-//       //res.json(dbUser);
-//     //   res.render("admin",{
-//     //       layout: 'main',
-//     //       users: dbUser
-//     //   });
-//     });
-// };
+exports.findUser = function (req, res) {
+    console.log(req.user.username);
+    var userId=req.user.id;
+    db.User.findAll(
+        {
+          where: {
+            id: userId
+          }
+        }).then(function(dbUser){
+          console.log(dbUser);
+          res.render("editprofile",{
+            layout: 'main',
+            //  firstname: "test",
+            //  lastname: dbUser.lastname,
+            //  username: dbUser[0].username,
+            //  password: dbUser.password,
+            //  email: dbUser.email,
+            //  id: dbUser.id
+           });
+        });
+};
 //for admin to add new user
 exports.adminAdduser = function(req, res) {
-    console.log(req.body);  
+     
     db.User.findAll({
         where: {username: req.body.username}
       }).then(function(users) {
@@ -61,10 +61,10 @@ exports.adminAdduser = function(req, res) {
         } else {
           console.log("this is a new user");
           db.User.create(req.body          
-         ).then(function(newuser) {
+          ).then(function(newuser) {
             console.log("New User created: " + newuser);
             console.log("id: "+newuser.insertId);
-            res.send({redirect: '/users/admin'});
+            //res.send({redirect: '/users/admin'});
           }).catch(function(err) {
             res.json(err);
           });
@@ -73,6 +73,7 @@ exports.adminAdduser = function(req, res) {
 };
 //need to create admin page which owner is able to add and delete user, show users in a table with button of edit and delete in the last column
 exports.adminUpdateuser = function(req, res) {
+
     console.log(req.body);
     
     db.User.update(req.body,
@@ -82,7 +83,6 @@ exports.adminUpdateuser = function(req, res) {
           }
         }).then(function(dbUser){
         //   res.json(dbUser);
-        console.log("updated");
           
  
         });
@@ -95,11 +95,14 @@ exports.adminDeleteuser = function(req, res) {
           id: req.params.id
         }
       }).then(function(dbUser) {
-        res.json(dbUser);
+        // res.json(dbUser);
       });
 };
 
 exports.adminMain = function (req, res) {
+  //console.log(req.user.username);
+  //console.log(req.user.id);
+ // var loginUser=req.user.username;
     db.User.findAll({
         //where: query
       }).then(function(dbUser) {
@@ -107,19 +110,23 @@ exports.adminMain = function (req, res) {
         console.log(dbUser);
         res.render("admin",{
             layout: 'main',
-            users: dbUser
+            //username: req.user.username,
+            users: dbUser,
+            //username: loginUser
         });
       });
 };
 
-exports.signOutUser = function(req,res) {
+exports.signOutUser = function(req, res) {
     req.logout();
     res.redirect("/");
 };
   
   // login
 exports.loginUser = function(req, res) {
-    console.log(req);
+  console.log(req.body);
+    //  console.log(req.user.username);
+    //  console.log(req.user);
       // Since we're doing a POST with javascript, we can't actually redirect that post into a GET request
       // So we're sending the user back the route to the members page because the redirect will happen on the front end
       // They won't get this or even be able to access this page if they aren't authed
