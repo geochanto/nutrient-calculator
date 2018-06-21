@@ -1,6 +1,7 @@
 $(document).ready(function () {
   var $RecipeNameInput = $("input#RecipeName");
   var $RecipeDescriptionInput = $("input#RecipeDescription");
+  var $RecipeTypeInput = $("input#RecipeType");
 
   $(document).on("click", ".deleteRecipe", deleteRecipe);
   $(document).on("click", "#submitRecipe", insertRecipe);
@@ -53,6 +54,7 @@ function insertRecipe(event) {
       var recipe = {
         RecipeName: $RecipeNameInput.val().trim(),
         RecipeDescription: $RecipeDescriptionInput.val().trim(),
+        RecipeType: $RecipeTypeInput.val().trim(),
         RecipeIngredients: RecipeIngredientsInputs
       };
 
