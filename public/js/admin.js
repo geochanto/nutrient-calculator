@@ -10,6 +10,7 @@ $(document).ready(function() {
         firstname: userinfo.siblings("td.fn").children("input").val().trim(),
         lastname: userinfo.siblings("td.ln").children("input").val().trim(),
         username: userinfo.siblings("td.un").children("input").val().trim(),
+        role: userinfo.siblings("td.ro").children("input").val().trim(),
         password: userinfo.siblings("td.pw").children("input").val().trim(),
         email: userinfo.siblings("td.em").children("input").val().trim()
         
@@ -76,6 +77,7 @@ $(document).ready(function() {
         firstname: userinfo.siblings("td.fn").children("input").val().trim(),
         lastname: userinfo.siblings("td.ln").children("input").val().trim(),
         username: defusername,
+        role: userinfo.siblings("td.ro").children("input").val().trim(),
         password: defpassword,
         email: userinfo.siblings("td.em").children("input").val().trim()
         
@@ -86,12 +88,13 @@ $(document).ready(function() {
         data: userData
       }).then(function(data) {
         window.location.replace(data);
-       
+        location.reload();
         // If there's an error, log the error
       });
       userinfo.siblings("td.fn").children("input").val("");
       userinfo.siblings("td.ln").children("input").val("");
       userinfo.siblings("td.un").children("input").val("");
+      userinfo.siblings("td.ro").children("input").val("");
       userinfo.siblings("td.pw").children("input").val("");
       userinfo.siblings("td.em").children("input").val("");
    });
