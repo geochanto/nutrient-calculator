@@ -13,73 +13,52 @@ exports.viewRecipes = function (req, res) {
 };
 
 exports.addRecipe = function (req, res) {
-
-  var promises = [];
-
-  promises.push(
     db.Recipe.create({
       RecipeName: req.body.RecipeName,
       RecipeDescription: req.body.RecipeDescription
-    })
-  )
+    }).then(function(newRecipe) {
+        var promises = [];
+        for (var i = 0; i < req.body.RecipeIngredients.length; i++) {
+            var RecipeId = newRecipe.dataValues.id;
+            console.log(newRecipe.dataValues.id);
+            promises.push(
+              db.RecipeAmount.create({
+                Amount: req.body.RecipeIngredients[i].AmountForSmall,
+                Size: 'sm',
+                Type: 'smoothie',
+                // IngredientId: 10,
+                RecipeId: RecipeId
+              })
+            );
+        
+            promises.push(
+              db.RecipeAmount.create({
+                Amount: req.body.RecipeIngredients[i].AmountForMedium,
+                Size: 'md',
+                Type: 'smoothie',
+                // IngredientId: 10,
+                RecipeId: RecipeId
+              })
+            );
+        
+            promises.push(
+              db.RecipeAmount.create({
+                Amount: req.body.RecipeIngredients[i].AmountForLarge,
+                Size: 'lg',
+                Type: 'smoothie',
+                // IngredientId: 10,
+                RecipeId: RecipeId
+              })
+            );
+          }
 
-  for (var i = 0; i < req.body.RecipeIngredients.length; i++) {
-    promises.push(
-      db.RecipeAmount.create({
-        Amount: req.body.RecipeIngredients[i].AmountForSmall,
-        Size: 'sm',
-        Type: 'smoothie',
-        // IngredientId: 10,
-        // RecipeId: 1
-      })
-    );
+          sequelize.Promise.all(promises).then(function() {
+            console.log('All done YAYYYYYYY!!!!!!!');
+          });
 
-    promises.push(
-      db.RecipeAmount.create({
-        Amount: req.body.RecipeIngredients[i].AmountForMedium,
-        Size: 'md',
-        Type: 'smoothie',
-        // IngredientId: 10,
-        // RecipeId: 1
-      })
-    );
+    });
 
-    promises.push(
-      db.RecipeAmount.create({
-        Amount: req.body.RecipeIngredients[i].AmountForLarge,
-        Size: 'lg',
-        Type: 'smoothie',
-        // IngredientId: 10,
-        // RecipeId: 1
-      })
-    );
-  }
-
-
-
-  // var promises = {
-  //   recipeAdd: db.Recipe.create({
-  //     RecipeName: req.body.RecipeName,
-  //     RecipeDescription: req.body.RecipeDescription
-  //   }),
-  //   recipeAmountAdd: db.RecipeAmount.create({
-  //     Amount: 110,
-  //     Size: 'sm',
-  //     Type: 'smoothie',
-  //     // IngredientId: 10,
-  //     // RecipeId: 1
-  //   })
-  // }
-  // sequelize.Promise.props(promises).then(function (results) {
-  //   /// each promise is resolved here, results:
-  //   results.recipeAdd;
-  //   results.recipeAmountAdd;
-
-  // });
-
-  sequelize.Promise.all(promises).then(function() {
-    console.log("all the files were created");
-});
+  
 
 };
 
