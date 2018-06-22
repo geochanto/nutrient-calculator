@@ -11,7 +11,6 @@ exports.viewIngredients = function(req, res) {
 
 exports.addIngredient = function(req, res) {
   db.Ingredient.create(req.body).then(function() {
-    console.log('THEN!');
     res.redirect('/ingredients');
   });
 };
