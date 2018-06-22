@@ -43,13 +43,24 @@ function insertRecipe(event) {
       event.preventDefault();
       RecipeIngredientsInputs = [];
       $('#RecipeIngredientGroup .form-row').each(function() {
+
+        $(document).on("click", "option", doSelect);
+
+        function doSelect() {
+          $(this).attr('selected');
+          // var IngredientId = $(this).attr('data-id');
+        }
+
+
         var inputs = {
-          Ingredient: $(this).find('.ingredientCol input').val().trim(),
+          // IngredientId:$(this).find('.ingredientCol select option:selected').attr('data-id'),
+          IngredientId:$(this).find('.ingredientCol select option:selected').attr('data-id'),
           AmountForSmall: $(this).find('.AmountForSmallCol input').val().trim(),
           AmountForMedium: $(this).find('.AmountForMediumCol input').val().trim(),
           AmountForLarge: $(this).find('.AmountForLargeCol input').val().trim()
         }
         RecipeIngredientsInputs.push(inputs);
+        console.log('inputs: ' + inputs.IngredientId);
       });
       var recipe = {
         RecipeName: $RecipeNameInput.val().trim(),

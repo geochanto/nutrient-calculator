@@ -32,13 +32,15 @@ exports.addRecipe = function (req, res) {
         var promises = [];
         for (var i = 0; i < req.body.RecipeIngredients.length; i++) {
             var RecipeId = newRecipe.dataValues.id;
-            console.log(newRecipe.dataValues.id);
+            console.log('========== REcipe INGREDIENTS');
+            console.log(req.body.RecipeIngredients);
+            console.log('========== REcipe INGREDIENTS');
             promises.push(
               db.RecipeAmount.create({
                 Amount: req.body.RecipeIngredients[i].AmountForSmall,
                 Size: 'sm',
                 Type: 'smoothie',
-                // IngredientId: 10,
+                IngredientId: req.body.RecipeIngredients[i].IngredientId,
                 RecipeId: RecipeId
               })
             );
@@ -48,7 +50,7 @@ exports.addRecipe = function (req, res) {
                 Amount: req.body.RecipeIngredients[i].AmountForMedium,
                 Size: 'md',
                 Type: 'smoothie',
-                // IngredientId: 10,
+                IngredientId: req.body.RecipeIngredients[i].IngredientId,
                 RecipeId: RecipeId
               })
             );
@@ -58,7 +60,7 @@ exports.addRecipe = function (req, res) {
                 Amount: req.body.RecipeIngredients[i].AmountForLarge,
                 Size: 'lg',
                 Type: 'smoothie',
-                // IngredientId: 10,
+                IngredientId: req.body.RecipeIngredients[i].IngredientId,
                 RecipeId: RecipeId
               })
             );
