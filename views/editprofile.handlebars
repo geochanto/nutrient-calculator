@@ -3,18 +3,21 @@
 
 
 
-<form action="/api/users" method = "POST" id ="edituser">
+<form action="/users/profile/" method = "POST" id ="editprofile">
     First Name: <br>
-  	<input type="text" id="fn1" name="user" class="editprofile" value = "{{firstname}}" readonly><br>
+  	<input type="text" data-user-id="{{id}}" id="fn1" name="user" class="editprofile" value = "{{firstname}}" readonly><br>
     Last Name: <br>
-  	<input type="text" id="ln1" name="user" class="editprofile" value = "{{lastname}}" readonly><br>
+  	<input type="text" data-user-id="{{id}}" id="ln1" name="user" class="editprofile" value = "{{lastname}}" readonly><br>
   	Username: <br>
-  	<input type="text" id="un1" name="user" class="editprofile" value = "{{username}}"><br>
+  	<input type="text" data-user-id="{{id}}" id="un1" name="user" class="editprofile" value = "{{username}}"><br>
     Password: <br>
-  	<input type="text" id="pn1" name="user" class="editprofile" value = "{{password}}"><br>
+  	<input type="text" data-user-id="{{id}}" id="pw1" name="user" class="editprofile" value = "{{password}}"><br>
     Email: <br>
-  	<input type="text" id="em1" name="user" class="editprofile" value = "{{email}}"><br>
+  	<input type="text" data-user-id="{{id}}" id="em1" name="user" class="editprofile" value = "{{email}}"><br>
     
     
-    <button type="submit" id="saveprofile">Save</button>
+    <button type="submit" data-user-id="{{id}}" id="saveprofile">Save</button>
 </form>
+    
+
+<script src="/js/profile.js" type="text/javascript"></script>

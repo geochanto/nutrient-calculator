@@ -3,11 +3,12 @@ const bodyParser = require("body-parser");
 // const sequelize = require("./config/connection.js");
 const path = require("path");
 const PORT = process.env.PORT || 3800;
-
+var flash = require('connect-flash');
 const db = require("./models");
 // const routes = require('./routes')(app);
 const session = require('express-session'); 
 const passport = require("./config/passport");
+const config = require("./config/extra-config");
 const app = express();
 // Serve static content for the app from the "public" directory in the application directory.
 
@@ -28,12 +29,13 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 //app.use(express.static(path.join(__dirname, 'public')));
-//app.use(session({ secret: config.sessionKey, resave: true, saveUninitialized: true }));
+app.use(session({ secret: config.sessionKey, resave: true, saveUninitialized: true }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(authCheck);
 
-
+app.use(flash());
 require('./routes')(app);
 const Ingredients_routes = require('./routes/Ingredients_routes');
 
