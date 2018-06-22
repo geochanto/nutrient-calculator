@@ -41,7 +41,7 @@ function insertRecipe(event) {
       $.ajax("/recipes/new", {
         type: "POST",
         data: recipe
-      });
+      }).then(location.reload());
   
   }
   

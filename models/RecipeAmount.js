@@ -18,7 +18,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 len: [1, 50],
-                isIn: [[ 'Classic Smoothies', 'Light Smoothies', 'Meal Replacements', 'teas and coffee', 'shots']]
+                //isIn: [[ 'Classic Smoothies', 'Light Smoothies', 'Meal Replacements', 'Teas and Coffee', 'Shots']]
             }
         }
     });

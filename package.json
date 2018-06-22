@@ -19,11 +19,8 @@
   },
   "homepage": "https://github.com/geochanto/nutrient-calculator#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "bluebird": "^3.5.1",
-=======
     "bcrypt-nodejs": "0.0.3",
->>>>>>> b9998bfda8302918b40fae4ebb1da84aa2995581
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
     "connect-flash": "^0.1.1",
     "express": "^4.16.3",
