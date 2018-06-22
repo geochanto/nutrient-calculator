@@ -8,6 +8,11 @@ module.exports = function(sequelize, DataTypes) {
         RecipeDescription: {
             type: DataTypes.TEXT,
             allowNull: true
+        },
+
+        RecipeImage: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     });
 

@@ -1,29 +1,99 @@
-<div id='rawlist'>
-<h2>Recipes List</h2>
-
-<div>
-
-<ul>
-  {{#each recipes}}
-  <li>
-     {{RecipeName}}
-      {{RecipeDescription}}
-  	</li>
-  {{/each}}
-</ul>
-</div>
-
-<div>
-<h2>ADD RECIPE</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="rpName">Recipe Name</label>
-    <input type="text" id="rpName" name="name">
-  </div>
+{{!-- <head>
 
 
-  <button type="submit">ADD RECIPE</button>
-</form>
-</div>
+<script>
+ $(document).ready(function(){
+
+  $().UItoTop({ easingType: 'easeOutQuart' });
+  $('#stuck_container').tmStickUp({});
+  $('.gallery .gall_item').touchTouch();
+
+  }); 
+</script>
+
+</head> --}}
+
+<body>
+<!--==============================
+              header
+=================================-->
+<header>
+<!--==============================
+            Stuck menu
+=================================-->
+  <section id="stuck_container">
+    <div class="container">
+      <div class="row">
+        <div class="grid_12">
+        <h1>
+            <img src="https://i.pinimg.com/474x/6e/da/7e/6eda7e89c2574b46bb8141395455220a.jpg" alt="Renovo">
+        </h1>  
+          <div class="navigation ">
+            <nav>
+              <ul class="sf-menu">
+               <li><a href="/recipes">home</a></li>
+               <li class="current"><a href="/recipes">menu</a></li>
+               <li class="current"><a href="/ingredients">Ingredients</a></li>
+               <li class="current"><a href="#">Login</a></li>
+               <li><a href="../html/contactpage.html">contacts</a></li>
+             </ul>
+            </nav>        
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+</header>        
+
+<!--=====================
+          Content
+======================-->
+<section class="content gallery pad1">
+  <div class="container">
+    <div class="row">
+      {{#each recipes}}
+      <div class="grid_4">
+        <div class="gall_block">
+          <div class="maxheight">
+            <img src="http://images.media-allrecipes.com/userphotos/960x960/3756352.jpg" width=100% alt="Renovo">
+            <div class="gall_bot">
+            <div class="text1"><a href="#">  {{RecipeName}}</a></div>
+             {{RecipeDescription}}
+            <br>
+            Calories; Sugar; Protain; 
+            <br>
+            <a href="#" class="btn">more</a></div>
+          </div>
+        </div>
+      </div>
+       {{!-- <div class="clear sep__1"></div> --}}
+       {{/each}}
+
+     
+
+
+</section>
+<!--==============================
+              footer
+=================================-->
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="grid_12">  
+        <div class="socials">
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-google-plus"></a>
+          <a href="#" class="fa fa-pinterest"></a>
+        </div>
+        <div class="copyright"><span class="brand">Renovo </span> &copy; <span id="copyright-year"></span> | <a href="#">Privacy Policy</a> <div>Website designed by TeamAlien</div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+</footer> 
+</body>
+</html>
 
