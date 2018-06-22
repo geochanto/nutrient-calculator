@@ -2,6 +2,26 @@ var db = require('../models');
 var sequelize = require('sequelize');
 var Promise = require("bluebird");
 
+exports.index = function(req, res) {
+  var loggedIn=false;
+  var userText = "";
+  if (req.user) {
+    loggedIn = true;
+    userText="Logged In as "+req.user.username;
+  };
+
+  db.Recipe.findAll({
+ 
+  }).then(function(data) {
+    console.log(data);
+    res.render('fullmenu', {
+      recipes: data,
+      loggedIn: loggedIn,
+      loginfo: userText
+    });
+  });
+};
+
 exports.viewRecipes = function (req, res) {
 
     var arr = [];
@@ -16,7 +36,7 @@ exports.viewRecipes = function (req, res) {
         console.log('============');
         console.log(arr);
         console.log('============');
-        res.render('fullmenu', {
+        res.render('recipes', {
           recipes: arr[1],
           ingredients: arr[0]
         });
