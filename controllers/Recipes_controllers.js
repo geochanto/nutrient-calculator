@@ -1,12 +1,21 @@
 var db  = require('../models');
 
 exports.index = function(req, res) {
+  var loggedIn=false;
+  var userText = "";
+  if (req.user) {
+    loggedIn = true;
+    userText="Logged In as "+req.user.username;
+  };
+
   db.Recipe.findAll({
  
   }).then(function(data) {
     console.log(data);
     res.render('fullmenu', {
-      recipes: data
+      recipes: data,
+      loggedIn: loggedIn,
+      loginfo: userText
     });
   });
 };
