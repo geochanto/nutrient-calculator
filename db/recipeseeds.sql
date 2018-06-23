@@ -1,17 +1,17 @@
 -- All Recipes List
-INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Chocolate Banana Smoothie', 'health drink and taste good', '../public/img/img1.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
+INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Chocolate Banana Smoothie', 'health drink and taste good', '../img/img1.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
 
-INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Mango Madness', 'mango is good for health', '../public/img/img2.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
+INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Mango Madness', 'mango is good for health', '../img/img2.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
 
-INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Strawberry Soother', 'best Strawberry Ever!', '../public/img/img3.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
-
-
-INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('The Citrus Tingler', 'best Strawberry Ever!', '../public/img/img4.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
+INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Strawberry Soother', 'best Strawberry Ever!', '../img/img3.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
 
 
-INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Hawaiian Summer', 'summer is here!', '../public/img/img5.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
+INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('The Citrus Tingler', 'best Strawberry Ever!', '../img/img4.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
 
-INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Tropical Calm', 'calm down!', '../public/img/img6.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
+
+INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Hawaiian Summer', 'summer is here!', '../img/img5.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
+
+INSERT INTO Recipes (RecipeName, RecipeDescription, RecipeImage, createdAt, updatedAt) VALUES ('Tropical Calm', 'calm down!', '../img/img6.jpg', '2018-06-21 06:05:48', '2018-06-21 06:05:50');
 
 
 
