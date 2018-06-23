@@ -1,11 +1,10 @@
-<div class="container">
+<div class="container" style="background: #ffffff;">
   <div class="row">
     <div class="col-12">
       <div id='rawlist'>
         <h2>Recipe Ingredients List</h2>
-
         <div>
-          <table id="recipeIngredientTable" class="table" style="background: white; color: black;">
+          <table id="recipeIngredientTable" class="table" style=" color: black;">
             <thead>
               <th scope="col">Recipe Id</th>
               <th scope="col">Recipe Type</th>
@@ -29,8 +28,8 @@
                     data-toggle="modal" data-target="#editRecipeModal">EDIT RECIPE</button>
                 </td> --}}
                 <td>
-                  <button class="deleteRecipe btn btn-danger" data-name="{{Recipe.dataValues.RecipeName}}" data-id="{{RecipeId}}" type="button"
-                    data-toggle="modal" data-target="#deleteRecipeModal">DELETE RECIPE ({{Recipe.dataValues.RecipeName}})</button>
+                  <button style="color: white;" class="deleteRecipe btn btn-danger" data-name="{{Recipe.dataValues.RecipeName}}" data-id="{{RecipeId}}"
+                    type="button" data-toggle="modal" data-target="#deleteRecipeModal">DELETE RECIPE ({{Recipe.dataValues.RecipeName}})</button>
                 </td>
               </tr>
             </tbody>
@@ -42,65 +41,66 @@
 
         <div>
           <h2>ADD RECIPE</h2>
-          <form id="recipe-form">
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="RecipeName">Recipe Name</label>
-                <input type="text" class="form-control" id="RecipeName" placeholder="">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="RecipeDescription">Recipe Description</label>
-                <input type="text" class="form-control" id="RecipeDescription" placeholder="">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="RecipeType">Recipe Type</label>
-                <input type="text" class="form-control" id="RecipeType" placeholder="">
-              </div>
-            </div>
-            <div id="RecipeIngredientGroup">
-              <div class="form-row">
-                {{!--
-                <div class="form-group col-md-3 ingredientCol">
-                  <label for="RecipeIngredient-1">Ingredient 1</label>
-                  <input type="text" class="form-control" id="RecipeIngredient-1" placeholder="">
-                </div> --}}
-
-                <div class="form-group col-md-3 ingredientCol">
-                  <label for="RecipeIngredient-1">Select ingredient</label>
-                  <select class="form-control" id="RecipeIngredient-1">
-                    {{#each ingredients}}
-                    <option class="ingredientClass" data-id="{{id}}" data-name="{{IngredientName}}">{{IngredientName}}</option>
-                    {{/each}}
-                  </select>
+              <form id="recipe-form">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label for="RecipeName">Recipe Name</label>
+                    <input type="text" class="form-control" id="RecipeName" placeholder="">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="RecipeDescription">Recipe Description</label>
+                    <input type="text" class="form-control" id="RecipeDescription" placeholder="">
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label for="RecipeType">Recipe Type (Optional)</label>
+                    <input type="text" class="form-control" id="RecipeType" placeholder="">
+                  </div>
                 </div>
+                <div id="RecipeIngredientGroup">
+                  <div class="form-row">
+                    {{!--
+                    <div class="form-group col-md-3 ingredientCol">
+                      <label for="RecipeIngredient-1">Ingredient 1</label>
+                      <input type="text" class="form-control" id="RecipeIngredient-1" placeholder="">
+                    </div> --}}
+
+                    <div class="form-group col-md-3 ingredientCol">
+                      <label for="RecipeIngredient-1">Select ingredient</label>
+                      <select class="form-control" id="RecipeIngredient-1">
+                        {{#each ingredients}}
+                        <option class="ingredientClass" data-id="{{id}}" data-name="{{IngredientName}}">{{IngredientName}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
 
 
 
-                <div class="form-group col-md-3 AmountForSmallCol">
-                  <label for="AmountForSmall-1">Amount for Small </label>
-                  <input type="text" class="form-control" id="AmountForSmall-1" placeholder="">
+                    <div class="form-group col-md-3 AmountForSmallCol">
+                      <label for="AmountForSmall-1">Amount for Small </label>
+                      <input type="text" class="form-control" id="AmountForSmall-1" placeholder="">
+                    </div>
+
+                    <div class="form-group col-md-3 AmountForMediumCol">
+                      <label for="AmountForMedium-1">Amount for Medium </label>
+                      <input type="text" class="form-control" id="AmountForMedium-1" placeholder="">
+                    </div>
+
+                    <div class="form-group col-md-3 AmountForLargeCol">
+                      <label for="AmountForLarge-1">Amount for Large </label>
+                      <input type="text" class="form-control" id="AmountForLarge-1" placeholder="">
+                    </div>
+
+                  </div>
                 </div>
+                <span id="addRecipeIngredient" style="color: #ffffff" class="btn btn-success">Add Another ingredient</span>
+                <br>
+                <br>
 
-                <div class="form-group col-md-3 AmountForMediumCol">
-                  <label for="AmountForMedium-1">Amount for Medium </label>
-                  <input type="text" class="form-control" id="AmountForMedium-1" placeholder="">
-                </div>
+                <button id="submitRecipe" type="submit" style="color: #ffffff" class="btn btn-primary">Submit</button>
+              </form>
+          </div>
 
-                <div class="form-group col-md-3 AmountForLargeCol">
-                  <label for="AmountForLarge-1">Amount for Large </label>
-                  <input type="text" class="form-control" id="AmountForLarge-1" placeholder="">
-                </div>
-
-              </div>
-            </div>
-            <span id="addRecipeIngredient" class="btn btn-success">Add ingredient</span>
-            <br>
-            <br>
-
-            <button id="submitRecipe" type="submit" class="btn btn-primary">Submit</button>
-          </form>
-
-        </div>
+        </div><br><br>
 
 
         <!-- Delete Recipe confirmation Modal -->
