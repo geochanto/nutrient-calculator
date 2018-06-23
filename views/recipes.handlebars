@@ -1,128 +1,132 @@
-<div id='rawlist'>
-  <h2>Recipes List</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div id='rawlist'>
+        <h2>Recipe Ingredients List</h2>
 
-  <div>
+        <div>
+          <table id="recipeIngredientTable" class="table" style="background: white; color: black;">
+            <thead>
+              <th scope="col">Recipe Id</th>
+              <th scope="col">Recipe Type</th>
+              <th scope="col">Size</th>
+              <th scope="col">Recipe Name</th>
+              <th scope="col">Ingredient Name</th>
+              <th scope="col">Ingredient Amount (oz)</th>
+            </thead>
+            <tbody>
+              {{#each recipeamounts}}
+              <tr>
+                <td>{{RecipeId}} </td>
+                <td>{{Type}} </td>
+                <td>{{Size}} </td>
+                <td>{{Recipe.dataValues.RecipeName}} </td>
+                <td>{{Ingredient.dataValues.IngredientName}} </td>
+                <td>{{Amount}} </td>
+                {{!--
+                <td>
+                  <button class="editRecipe btn btn-info" data-id="{{RecipeId}}" data-name="{{Recipe.dataValues.RecipeName}}" type="button"
+                    data-toggle="modal" data-target="#editRecipeModal">EDIT RECIPE</button>
+                </td> --}}
+                <td>
+                  <button class="deleteRecipe btn btn-danger" data-name="{{Recipe.dataValues.RecipeName}}" data-id="{{RecipeId}}" type="button"
+                    data-toggle="modal" data-target="#deleteRecipeModal">DELETE RECIPE ({{Recipe.dataValues.RecipeName}})</button>
+                </td>
+              </tr>
+            </tbody>
+            {{/each}}
+          </table>
 
-    <b>Recipe Names & Desc</b>
-    <table border="1" cellpadding="5">
-      <tr>
-        <th>ID</th>
-        <th>Amount</th>
-        <th>Size</th>
-        <th>Type</th>
-        <th>IngredientId</th>
-        <th>IngredientName</th>
-        <th>RecipeId</th>
-        <th>RecipeName</th>
-      </tr>
-      {{#each recipes}}
-      <tr>
-        <td>{{id}} </td>
-        <td>{{Amount}} </td>
-        <td>{{Size}} </td>
-        <td>{{Type}} </td>
-        <td>{{IngredientId}} </td>
-        <td>{{Ingredient.dataValues.IngredientName}} </td>
-        <td>{{RecipeId}} </td>
-        <td>{{Recipe.dataValues.RecipeName}} </td>
-        {{!--
-        <td>
-          <button class="editRecipe btn btn-info" data-id="{{RecipeId}}" data-name="{{Recipe.dataValues.RecipeName}}" type="button"
-            data-toggle="modal" data-target="#editRecipeModal">EDIT RECIPE</button>
-        </td> --}}
-        <td>
-          <button class="deleteRecipe btn btn-danger" data-name="{{Recipe.dataValues.RecipeName}}" data-id="{{RecipeId}}" type="button"
-            data-toggle="modal" data-target="#deleteRecipeModal">DELETE RECIPE</button>
-        </td>
-      </tr>
-      {{/each}}
-    </table>
 
-  </div>
-
-  <div>
-    <h2>ADD RECIPE</h2>
-    <form id="recipe-form">
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="RecipeName">Recipe Name</label>
-          <input type="text" class="form-control" id="RecipeName" placeholder="">
         </div>
-        <div class="form-group col-md-4">
-          <label for="RecipeDescription">Recipe Description</label>
-          <input type="text" class="form-control" id="RecipeDescription" placeholder="">
-        </div>
-        <div class="form-group col-md-4">
-          <label for="RecipeType">Recipe Type</label>
-          <input type="text" class="form-control" id="RecipeType" placeholder="">
-        </div>
-      </div>
-      <div id="RecipeIngredientGroup">
-        <div class="form-row">
-          {{!--
-          <div class="form-group col-md-3 ingredientCol">
-            <label for="RecipeIngredient-1">Ingredient 1</label>
-            <input type="text" class="form-control" id="RecipeIngredient-1" placeholder="">
-          </div> --}}
 
-          <div class="form-group col-md-3 ingredientCol">
-            <label for="RecipeIngredient-1">Select ingredient</label>
-            <select class="form-control" id="RecipeIngredient-1">
-              {{#each ingredients}}
-              <option class="ingredientClass" data-id="{{id}}" data-name="{{IngredientName}}">{{IngredientName}}</option>
-              {{/each}}
-            </select>
+        <div>
+          <h2>ADD RECIPE</h2>
+          <form id="recipe-form">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="RecipeName">Recipe Name</label>
+                <input type="text" class="form-control" id="RecipeName" placeholder="">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="RecipeDescription">Recipe Description</label>
+                <input type="text" class="form-control" id="RecipeDescription" placeholder="">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="RecipeType">Recipe Type</label>
+                <input type="text" class="form-control" id="RecipeType" placeholder="">
+              </div>
+            </div>
+            <div id="RecipeIngredientGroup">
+              <div class="form-row">
+                {{!--
+                <div class="form-group col-md-3 ingredientCol">
+                  <label for="RecipeIngredient-1">Ingredient 1</label>
+                  <input type="text" class="form-control" id="RecipeIngredient-1" placeholder="">
+                </div> --}}
+
+                <div class="form-group col-md-3 ingredientCol">
+                  <label for="RecipeIngredient-1">Select ingredient</label>
+                  <select class="form-control" id="RecipeIngredient-1">
+                    {{#each ingredients}}
+                    <option class="ingredientClass" data-id="{{id}}" data-name="{{IngredientName}}">{{IngredientName}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+
+
+
+                <div class="form-group col-md-3 AmountForSmallCol">
+                  <label for="AmountForSmall-1">Amount for Small </label>
+                  <input type="text" class="form-control" id="AmountForSmall-1" placeholder="">
+                </div>
+
+                <div class="form-group col-md-3 AmountForMediumCol">
+                  <label for="AmountForMedium-1">Amount for Medium </label>
+                  <input type="text" class="form-control" id="AmountForMedium-1" placeholder="">
+                </div>
+
+                <div class="form-group col-md-3 AmountForLargeCol">
+                  <label for="AmountForLarge-1">Amount for Large </label>
+                  <input type="text" class="form-control" id="AmountForLarge-1" placeholder="">
+                </div>
+
+              </div>
+            </div>
+            <span id="addRecipeIngredient" class="btn btn-success">Add ingredient</span>
+            <br>
+            <br>
+
+            <button id="submitRecipe" type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+        </div>
+
+
+        <!-- Delete Recipe confirmation Modal -->
+        <div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Recipe</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure you want to delete recipe
+                  <strong>
+                    <span id="RecipeNameDelete"></span>
+                  </strong>?</p>
+              </div>
+              <div class="modal-footer">
+                <button id="confirmRecipeDelete" type="button" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+              </div>
+            </div>
           </div>
-
-
-
-          <div class="form-group col-md-3 AmountForSmallCol">
-            <label for="AmountForSmall-1">Amount for Small </label>
-            <input type="text" class="form-control" id="AmountForSmall-1" placeholder="">
-          </div>
-
-          <div class="form-group col-md-3 AmountForMediumCol">
-            <label for="AmountForMedium-1">Amount for Medium </label>
-            <input type="text" class="form-control" id="AmountForMedium-1" placeholder="">
-          </div>
-
-          <div class="form-group col-md-3 AmountForLargeCol">
-            <label for="AmountForLarge-1">Amount for Large </label>
-            <input type="text" class="form-control" id="AmountForLarge-1" placeholder="">
-          </div>
-
         </div>
-      </div>
-      <span id="addRecipeIngredient" class="btn btn-success">Add ingredient</span>
-      <br>
-      <br>
 
-      <button id="submitRecipe" type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
-  </div>
-
-
-  <!-- Delete Recipe confirmation Modal -->
-  <div class="modal fade" id="deleteRecipeModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete Recipe</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete
-            <b>
-              <span id="RecipeNameDelete"></span>
-            </b>?</p>
-        </div>
-        <div class="modal-footer">
-          <button id="confirmRecipeDelete" type="button" class="btn btn-danger" data-dismiss="modal">Yes</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-        </div>
       </div>
     </div>
   </div>
