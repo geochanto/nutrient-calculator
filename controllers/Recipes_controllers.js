@@ -52,7 +52,6 @@ exports.viewRecipes = function (req, res) {
 
 
 exports.recipeTotals = function (req, res) {
-  var totalsArr = [];
   db.Recipe.findAll({
 
   }).then(function (data) {
@@ -64,19 +63,19 @@ exports.recipeTotals = function (req, res) {
         },
         include: [db.Recipe, db.Ingredient]
       }).then(function (data2) {
-        console.log('==================');
-        console.log('==================');
         var totalCalories = 0;
         var totalCarbs = 0;
         var totalSugar = 0;
         var totalFat = 0;
         var totalProtein = 0;
+
         for (var j = 0; j < data2.length; j++) {
-          var Calories = parseInt(data2[j].dataValues.Ingredient.dataValues.Calories);
-          var Carbs = parseInt(data2[j].dataValues.Ingredient.dataValues.Carbs);
-          var Sugar = parseInt(data2[j].dataValues.Ingredient.dataValues.Sugar);
-          var Fat = parseInt(data2[j].dataValues.Ingredient.dataValues.Fat);
-          var Protein = parseInt(data2[j].dataValues.Ingredient.dataValues.Protein);
+          var Calories = parseInt(data2[j].dataValues.Ingredient.dataValues.Calories) * parseInt(data2[j].Amount);
+          var Carbs = parseInt(data2[j].dataValues.Ingredient.dataValues.Carbs) * parseInt(data2[j].Amount);
+          var Sugar = parseInt(data2[j].dataValues.Ingredient.dataValues.Sugar) * parseInt(data2[j].Amount);
+          var Fat = parseInt(data2[j].dataValues.Ingredient.dataValues.Fat) * parseInt(data2[j].Amount);
+          var Protein = parseInt(data2[j].dataValues.Ingredient.dataValues.Protein) * parseInt(data2[j].Amount);
+
           totalCalories += Calories;
           totalCarbs += Carbs;
           totalSugar += Sugar;
@@ -90,18 +89,17 @@ exports.recipeTotals = function (req, res) {
           totalFat: totalFat,
           totalProtein: totalProtein
         }
-        console.log('TOTALS:' + totals.totalCalories);
-        totalsArr.push(totals);
-        
+        // console.log('TOTALS:' + totals.totalCalories);
+        displayTotals(totals);
       });
     }
-    console.log('totalsArr: ' + totalsArr);
-    res.render('recipetotals', {
-      recipes: totalsArr
-    });
-  }).then(function (data2) {
-    // console.log(data2);
   });
+
+  function displayTotals(totals) {
+    console.log('==================');
+    console.log(totals);
+    res.redirect('/recipetotals');
+  }
 
 };
 
