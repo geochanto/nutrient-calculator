@@ -65,22 +65,33 @@ exports.recipeTotals = function (req, res) {
     for (var i = 0; i < data.length; i++) {
       db.RecipeAmount.findAll({
         where: {
-          RecipeId: data[i].dataValues.id,
-          Size: "sm"
+          RecipeId: data[i].dataValues.id
         },
         include: [db.Recipe, db.Ingredient]
       })
         .then(function (data2) {
-          var totalCalories = 0;
-          var totalCarbs = 0;
-          var totalSugar = 0;
-          var totalFat = 0;
-          var totalProtein = 0;
+          var totalCaloriesSmall = 0;
+          var totalCarbsSmall = 0;
+          var totalSugarSmall = 0;
+          var totalFatSmall = 0;
+          var totalProteinSmall = 0;
+          var totalCaloriesMedium = 0;
+          var totalCarbsMedium = 0;
+          var totalSugarMedium = 0;
+          var totalFatMedium = 0;
+          var totalProteinMedium = 0;
+          var totalCaloriesLarge = 0;
+          var totalCarbsLarge = 0;
+          var totalSugarLarge = 0;
+          var totalFatLarge = 0;
+          var totalProteinLarge = 0;
 
           for (var j = 0; j < data2.length; j++) {
             console.log("======== DataValues ========")
-            console.log(data2[j].dataValues.Recipe.dataValues.id);
+            console.log(data2[j].dataValues.Size);
             console.log("======== DataValues ========")
+            var size = data2[j].dataValues.Size;
+            if (size === "sm"){
             var RecipeId = data2[j].dataValues.Recipe.dataValues.id
             var RecipeName = data2[j].dataValues.Recipe.dataValues.RecipeName;
             var Calories = parseInt(data2[j].dataValues.Ingredient.dataValues.Calories) * parseInt(data2[j].Amount);
@@ -88,22 +99,67 @@ exports.recipeTotals = function (req, res) {
             var Sugar = parseInt(data2[j].dataValues.Ingredient.dataValues.Sugar) * parseInt(data2[j].Amount);
             var Fat = parseInt(data2[j].dataValues.Ingredient.dataValues.Fat) * parseInt(data2[j].Amount);
             var Protein = parseInt(data2[j].dataValues.Ingredient.dataValues.Protein) * parseInt(data2[j].Amount);
-            totalCalories += Calories;
-            totalCarbs += Carbs;
-            totalSugar += Sugar;
-            totalFat += Fat;
-            totalProtein += Protein;
+            totalCaloriesSmall += Calories;
+            totalCarbsSmall += Carbs;
+            totalSugarSmall += Sugar;
+            totalFatSmall += Fat;
+            totalProteinSmall += Protein;
           }
-
+          else if (size === "md"){
+            var RecipeId = data2[j].dataValues.Recipe.dataValues.id
+            var RecipeName = data2[j].dataValues.Recipe.dataValues.RecipeName;
+            var Calories = parseInt(data2[j].dataValues.Ingredient.dataValues.Calories) * parseInt(data2[j].Amount);
+            var Carbs = parseInt(data2[j].dataValues.Ingredient.dataValues.Carbs) * parseInt(data2[j].Amount);
+            var Sugar = parseInt(data2[j].dataValues.Ingredient.dataValues.Sugar) * parseInt(data2[j].Amount);
+            var Fat = parseInt(data2[j].dataValues.Ingredient.dataValues.Fat) * parseInt(data2[j].Amount);
+            var Protein = parseInt(data2[j].dataValues.Ingredient.dataValues.Protein) * parseInt(data2[j].Amount);
+            totalCaloriesMedium += Calories;
+            totalCarbsMedium += Carbs;
+            totalSugarMedium += Sugar;
+            totalFatMedium += Fat;
+            totalProteinMedium += Protein;
+          }
+          else if (size === "lg"){
+            var RecipeId = data2[j].dataValues.Recipe.dataValues.id
+            var RecipeName = data2[j].dataValues.Recipe.dataValues.RecipeName;
+            var Calories = parseInt(data2[j].dataValues.Ingredient.dataValues.Calories) * parseInt(data2[j].Amount);
+            var Carbs = parseInt(data2[j].dataValues.Ingredient.dataValues.Carbs) * parseInt(data2[j].Amount);
+            var Sugar = parseInt(data2[j].dataValues.Ingredient.dataValues.Sugar) * parseInt(data2[j].Amount);
+            var Fat = parseInt(data2[j].dataValues.Ingredient.dataValues.Fat) * parseInt(data2[j].Amount);
+            var Protein = parseInt(data2[j].dataValues.Ingredient.dataValues.Protein) * parseInt(data2[j].Amount);
+            totalCaloriesLarge += Calories;
+            totalCarbsLarge += Carbs;
+            totalSugarLarge += Sugar;
+            totalFatLarge += Fat;
+            totalProteinLarge += Protein;
+          }
+        }
           var totals = {
             RecipeId: RecipeId,
             RecipeName: RecipeName,
-            totalCalories: totalCalories,
-            totalCarbs: totalCarbs,
-            totalSugar: totalSugar,
-            totalFat: totalFat,
-            totalProtein: totalProtein
+            small: {
+              totalCalories: totalCaloriesSmall,
+              totalCarbs: totalCarbsSmall,
+              totalSugar: totalSugarSmall,
+              totalFat: totalFatSmall,
+              totalProtein: totalProteinSmall
+            },
+            medium: {
+              totalCalories: totalCaloriesMedium,
+              totalCarbs: totalCarbsMedium,
+              totalSugar: totalSugarMedium,
+              totalFat: totalFatMedium,
+              totalProtein: totalProteinMedium
+            },
+            large: {
+              totalCalories: totalCaloriesLarge,
+              totalCarbs: totalCarbsLarge,
+              totalSugar: totalSugarLarge,
+              totalFat: totalFatLarge,
+              totalProtein: totalProteinLarge
+            }
           }
+
           totalsArr.push(totals);
 
           if (totalsArr.length === data.length) {
