@@ -52,9 +52,16 @@ exports.viewRecipes = function (req, res) {
 
 
 exports.recipeTotals = function (req, res) {
-  db.Recipe.findAll({
+  var totalsArr = [];
+  db.Recipe.findAll({})
+    .then(function (data) {
+      calculateTotals(data, function () {
+      res.json(totalsArr);
+      });
+    });
 
-  }).then(function (data) {
+
+  function calculateTotals(data, callback) {
     for (var i = 0; i < data.length; i++) {
       db.RecipeAmount.findAll({
         where: {
@@ -62,46 +69,51 @@ exports.recipeTotals = function (req, res) {
           Size: "sm"
         },
         include: [db.Recipe, db.Ingredient]
-      }).then(function (data2) {
-        var totalCalories = 0;
-        var totalCarbs = 0;
-        var totalSugar = 0;
-        var totalFat = 0;
-        var totalProtein = 0;
+      })
+        .then(function (data2) {
+          var totalCalories = 0;
+          var totalCarbs = 0;
+          var totalSugar = 0;
+          var totalFat = 0;
+          var totalProtein = 0;
 
-        for (var j = 0; j < data2.length; j++) {
-          var Calories = parseInt(data2[j].dataValues.Ingredient.dataValues.Calories) * parseInt(data2[j].Amount);
-          var Carbs = parseInt(data2[j].dataValues.Ingredient.dataValues.Carbs) * parseInt(data2[j].Amount);
-          var Sugar = parseInt(data2[j].dataValues.Ingredient.dataValues.Sugar) * parseInt(data2[j].Amount);
-          var Fat = parseInt(data2[j].dataValues.Ingredient.dataValues.Fat) * parseInt(data2[j].Amount);
-          var Protein = parseInt(data2[j].dataValues.Ingredient.dataValues.Protein) * parseInt(data2[j].Amount);
+          for (var j = 0; j < data2.length; j++) {
+            console.log("======== DataValues ========")
+            console.log(data2[j].dataValues.Recipe.dataValues.id);
+            console.log("======== DataValues ========")
+            var RecipeId = data2[j].dataValues.Recipe.dataValues.id
+            var RecipeName = data2[j].dataValues.Recipe.dataValues.RecipeName;
+            var Calories = parseInt(data2[j].dataValues.Ingredient.dataValues.Calories) * parseInt(data2[j].Amount);
+            var Carbs = parseInt(data2[j].dataValues.Ingredient.dataValues.Carbs) * parseInt(data2[j].Amount);
+            var Sugar = parseInt(data2[j].dataValues.Ingredient.dataValues.Sugar) * parseInt(data2[j].Amount);
+            var Fat = parseInt(data2[j].dataValues.Ingredient.dataValues.Fat) * parseInt(data2[j].Amount);
+            var Protein = parseInt(data2[j].dataValues.Ingredient.dataValues.Protein) * parseInt(data2[j].Amount);
+            totalCalories += Calories;
+            totalCarbs += Carbs;
+            totalSugar += Sugar;
+            totalFat += Fat;
+            totalProtein += Protein;
+          }
 
-          totalCalories += Calories;
-          totalCarbs += Carbs;
-          totalSugar += Sugar;
-          totalFat += Fat;
-          totalProtein += Protein;
-        }
-        var totals = {
-          totalCalories: totalCalories,
-          totalCarbs: totalCarbs,
-          totalSugar: totalSugar,
-          totalFat: totalFat,
-          totalProtein: totalProtein
-        }
-        // console.log('TOTALS:' + totals.totalCalories);
-        displayTotals(totals);
-      });
+          var totals = {
+            RecipeId: RecipeId,
+            RecipeName: RecipeName,
+            totalCalories: totalCalories,
+            totalCarbs: totalCarbs,
+            totalSugar: totalSugar,
+            totalFat: totalFat,
+            totalProtein: totalProtein
+          }
+          totalsArr.push(totals);
+
+          if (totalsArr.length === data.length) {
+            callback();
+          }
+        });
     }
-  });
-
-  function displayTotals(totals) {
-    console.log('==================');
-    console.log(totals);
-    res.redirect('/recipetotals');
-  }
-
-};
+    
+  };
+}
 
 exports.addRecipe = function (req, res) {
   db.Recipe.create({
