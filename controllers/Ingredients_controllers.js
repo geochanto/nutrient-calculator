@@ -2,10 +2,7 @@ var db  = require('../models');
 
 exports.viewIngredients = function(req, res) {
   db.Ingredient.findAll({}).then(function(dbIngredient) {
-    res.render('ingredients', {
-      layout: 'main',
-      ingredients: dbIngredient
-    });
+    res.json(dbIngredient)
   });
 };
 

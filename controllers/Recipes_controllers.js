@@ -14,11 +14,7 @@ exports.index = function (req, res) {
 
   }).then(function (data) {
     console.log(data);
-    res.render('fullmenu', {
-      recipes: data,
-      loggedIn: loggedIn,
-      loginfo: userText
-    });
+    res.json(data);
   });
 };
 
@@ -37,11 +33,7 @@ exports.viewRecipes = function (req, res) {
       include: [db.Recipe, db.Ingredient]
     }).then(function (data3) {
       arr.push(data3);
-      res.render('recipes', {
-        ingredients: arr[0],
-        recipes: arr[1],
-        recipeamounts: arr[2]
-      });
+      res.json(arr)
     })
   );
 };
@@ -49,8 +41,6 @@ exports.viewRecipes = function (req, res) {
 //query recipes by id
 //join recipeamounts by recipeId & size
 //add up calories, carbs, sugars, fat, protein
-
-
 exports.recipeTotals = function (req, res) {
   var totalsArr = [];
   db.Recipe.findAll({})
